@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2012 3:00:10 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Symptoms" table="symptoms" catalog="extended">
+        <id name="symptomid" type="java.lang.Integer">
+            <column name="symptomid" />
+            <generator class="identity" />
+        </id>
+        <property name="symptomname" type="string">
+            <column name="symptomname" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

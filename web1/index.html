@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>ClaimSync Extended</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- Le styles -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link type="text/css" href="css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/styles.css">
+		<style type="text/css" title="currentStyle">
+			@import "css/jquery.dataTables_themeroller.css";
+			@import "css/custom-theme/jquery-ui-1.8.16.custom.css";
+		</style>
+		<link href="css/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
+
+	</head>
+
+	<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+		<!-- Navbar
+		================================================== -->
+		<div style="display: none;" class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+					<a class="brand" href="../"><img src="images/logo.png" width="200px;" /></a>
+
+					<div style="margin-top: 10px;" class="nav-collapse">
+						<ul class="nav pull-right">
+
+							<li class="dropdown">
+								<a class="active" > Logged in as:  Mr. Amoo </a>
+
+							</li>
+							<li class="divider-vertical"></li>
+
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Account <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+
+									<li>
+										<a target="_blank" href="bootstrap.min.css"><i class="icon-wrench"></i> Settings </a>
+									</li>
+
+									<li>
+										<a target="_blank" href="bootstrap.css"><i class="icon-question-sign"></i> Help </a>
+									</li>
+									<li class="divider"></li>
+
+									<li>
+										<a target="_blank" href="variables.less"><i class="icon-off"></i> Log Out</a>
+									</li>
+
+								</ul>
+
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+
+			<!-- Masthead
+			================================================== -->
+			<header  class="jumbotron subhead" id="overview">
+
+				<div style="margin-top: 20px; margin-bottom: -50px;" class="subnav">
+					<ul class="nav nav-pills">
+
+					</ul>
+				</div>
+
+			</header>
+			<div style="position: absolute; left: 30%; top: 200px; text-align: center;" class="progress1">
+				<img src="images/logoonly.png" width="136px;" style="margin-bottom: 20px;" />
+				<a href="#"> <h3 class="segoe" style="text-align: center; font-weight: lighter;"> Your page is taken longer than expected to load.....
+				<br />
+				Please be patient!</h3>
+				<br />
+				</a>
+				<div  class="progress progress-striped active span5">
+
+					<div class="bar"
+					style="width: 100%;"></div>
+				</div>
+			</div>
+
+			<section id="dashboard">
+
+				<!-- Headings & Paragraph Copy -->
+				<div class="row">
+
+					<div style="height: 100%; position: fixed;" class="span3">
+						<ul style="display: none; " class="menu">
+							<li class="item1">
+								<a  href="#"><i class="icon-folder-open"></i> Patient Management <span>340</span></a>
+
+							</li>
+							<li class="item2">
+								<a href="#"><i class=" icon-user"></i> Staff Management <span>147</span></a>
+
+							</li>
+							<li class="item3">
+								<a href="#"><i class="icon-share"></i> Sponsorship <span>340</span></a>
+								<ul>
+									<li class="subitem1">
+										<a href="#">Cute Kittens <span>14</span></a>
+									</li>
+									<li class="subitem2">
+										<a href="#">Strange “Stuff” <span>6</span></a>
+									</li>
+									<li class="subitem3">
+										<a href="#">Automatic Fails <span>2</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="item4">
+								<a href="#"><i class="icon-check"></i> Podcasts <span>222</span></a>
+								<ul>
+									<li class="subitem1">
+										<a href="#">Cute Kittens <span>14</span></a>
+									</li>
+									<li class="subitem2">
+										<a href="#">Strange “Stuff” <span>6</span></a>
+									</li>
+									<li class="subitem3">
+										<a href="#">Automatic Fails <span>2</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="item5">
+								<a href="#"> <i class="icon-move"></i> Robots <span>16</span></a>
+								<ul>
+									<li class="subitem1">
+										<a href="#">Cute Kittens <span>14</span></a>
+									</li>
+									<li class="subitem2">
+										<a href="#">Strange “Stuff” <span>6</span></a>
+									</li>
+									<li class="subitem3">
+										<a href="#">Automatic Fails <span>2</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="item1">
+								<a href="#"><i class="icon-user"></i> Friends <span>340</span></a>
+								<ul>
+									<li class="subitem1">
+										<a href="#">Cute Kittens <span>14</span></a>
+									</li>
+									<li class="subitem2">
+										<a href="#">Strange “Stuff” <span>6</span></a>
+									</li>
+									<li class="subitem3">
+										<a href="#">Automatic Fails <span>2</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="item2">
+								<a href="#"><i class="icon-search"></i> Videos <span>147</span></a>
+								<ul>
+									<li class="subitem1">
+										<a href="#">Cute Kittens <span>14</span></a>
+									</li>
+									<li class="subitem2">
+										<a href="#">Strange “Stuff” <span>6</span></a>
+									</li>
+									<li class="subitem3">
+										<a href="#">Automatic Fails <span>2</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="item3">
+								<a href="#"><i class="icon-share"></i> Galleries <span>340</span></a>
+								<ul>
+									<li class="subitem1">
+										<a href="#">Cute Kittens <span>14</span></a>
+									</li>
+									<li class="subitem2">
+										<a href="#">Strange “Stuff” <span>6</span></a>
+									</li>
+									<li class="subitem3">
+										<a href="#">Automatic Fails <span>2</span></a>
+									</li>
+								</ul>
+							</li>
+
+						</ul>
+					</div>
+
+					<div style="display: none;" class="span9 offset3 thumbnail well content">
+
+						<ul style="margin-left: 0px;" class="breadcrumb span4">
+							<li>
+								<a >Patient Management</a>
+							</li>
+						</ul>
+						<div style="margin-bottom: 20px;" class="btn-group pull-right">
+							<button  id="dialog_link" class="btn btn-large ">
+								<i class="icon-pencil "></i> New
+							</button>
+							<button id="view_user" class="btn btn-large">
+								<i class="icon-edit"> </i> View
+							</button>
+							<button  id="modal_link" class="btn btn-large">
+								<i class="icon-edit"> </i> Edit
+							</button>
+							<button id="dialog_link"  class="btn btn-large">
+								<i class="icon-remove"> </i> Delete
+							</button>
+							<div class="clearfix"></div>
+						</div>
+
+						<table cellpadding="0" cellspacing="0" border="0" class="display example table">
+							<thead>
+								<tr>
+									<th>Member ID </th>
+									<th>Name </th>
+									<th>Sponsor</th>
+									<th>Policy Number</th>
+									<th>Contact Number</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd gradeX">
+									<td class="patient" rel="popover" data-original-title="<span style='text-align:center;'> <h3>Patient Information Summary </h3> <h5> Emmanuel Addo-Yirenkyi </h5> <h5><b> Date of Birth :</b> 15th April, 2012 </h5> <span>"
+									data-content="<table class='table table-bordered'> <tr> <td> Gender </td> <td> Male </td> </tr>  <tr> <td> Employer </td> <td> Claimsync </td> </tr>  <tr> <td> Sponsor </td> <td> Company </td> </tr> <tr>
+									<td> Policy Number </td> <td> MOM1342 </td> </tr> <tr> <td> Benefit Plan </td> <td> Gold </td> </tr>  </table> "><a href="#" class="normal">MOM1235 </a></td><td>Kwasi Nkwasah Aboagye
+									Explorer 4.0</td><td>Win 95+</td><td class="center"> 4</td><td class="center">X</td> </a>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+			</section>
+
+			<footer style="display: none;" class="footer">
+				<p style="text-align: center" class="pull-right">
+					<img src="images/logo.png" width="100px;" />
+				</p>
+			</footer>
+
+		</div><!-- /container -->
+
+		<!--end static dialog-->
+
+		<!-- Le javascript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap-dropdown.js"></script>
+		<script src="js/bootstrap-scrollspy.js"></script>
+		<script src="js/bootstrap-collapse.js"></script>
+		<script src="js/bootstrap-tooltip.js"></script>
+		<script src="js/bootstrap-popover.js"></script>
+		<script src="js/application.js"></script>
+
+		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+
+		<script type="text/javascript" src="third-party/jQuery-UI-Date-Range-Picker/js/date.js"></script>
+		<script type="text/javascript" src="third-party/jQuery-UI-Date-Range-Picker/js/daterangepicker.jQuery.js"></script>
+
+		<script src="third-party/wijmo/jquery.mousewheel.min.js" type="text/javascript"></script>
+		<script src="third-party/wijmo/jquery.bgiframe-2.1.3-pre.js" type="text/javascript"></script>
+		<script src="third-party/wijmo/jquery.wijmo-open.1.5.0.min.js" type="text/javascript"></script>
+
+		<script src="third-party/jQuery-UI-FileInput/js/enhance.min.js" type="text/javascript"></script>
+		<script src="third-party/jQuery-UI-FileInput/js/fileinput.jquery.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="js/tablecloth.js"></script>
+		<script type="text/javascript" src="js/demo.js"></script>
+		<!--initiate accordion-->
+		<script type="text/javascript">
+			$(function() {
+
+				var menu_ul = $('.menu > li > ul'), menu_a = $('.menu > li > a');
+
+				menu_ul.hide();
+
+				$(".menu").fadeIn();
+				$(".content").fadeIn();
+				$(".navbar").fadeIn();
+				$(".footer").fadeIn();
+				$(".progress1").hide();
+
+				menu_a.click(function(e) {
+					e.preventDefault();
+					if(!$(this).hasClass('active')) {
+						menu_a.removeClass('active');
+						menu_ul.filter(':visible').slideUp('normal');
+						$(this).addClass('active').next().stop(true, true).slideDown('normal');
+					} else {
+						$(this).removeClass('active');
+						$(this).next().stop(true, true).slideUp('normal');
+					}
+				});
+
+			});
+
+		</script>
+
+		<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('.example').dataTable({
+					"bJQueryUI" : true,
+					"sPaginationType" : "full_numbers",
+					"iDisplayLength" : 25,
+					"aaSorting" : [],
+					"bSort" : true
+
+				});
+
+				$(".continue").click(function() {
+
+					$(".first_half").slideUp();
+
+					$(".second_half").slideDown();
+
+					$(".pre_first_half").find("div").addClass("success");
+
+				});
+
+				$(".proceed").click(function() {
+
+					$(".second_half").slideUp();
+
+					$(".third_half").slideDown();
+
+				});
+
+				$(".back").click(function() {
+
+					$(".first_half").slideDown();
+
+					$(".second_half").slideUp();
+
+					$(".third_half").slideUp();
+
+					$(".pre_first_half").find("div").removeClass("success");
+
+				});
+
+				$(".previous").click(function() {
+
+					$(".second_half").slideDown();
+
+					$(".third_half").slideUp();
+
+					$(".first_half").slideUp();
+				});
+
+				$('.close_dialog').click(function() {
+
+					$('#dialog').dialog('close');
+
+				});
+
+				$(".patient").popover({
+
+					placement : 'right',
+					animation : true
+
+				});
+
+				$(".patient_visit").popover({
+
+					placement : 'top',
+					animation : true
+
+				});
+
+				$(".btn").tooltip({
+
+					placement : 'bottom',
+					animation : true
+
+				});
+
+				$(".update_sponsor").click(function() {
+
+					$(".sponsor_panel").slideToggle();
+
+				});
+
+				$(".slide_up").click(function() {
+
+					$(".sponsor_panel").slideUp();
+				});
+
+				$(".vitals_up").click(function() {
+
+					$(".vitals_panel").slideToggle();
+				});
+
+				$(".vitals_cancel").click(function() {
+
+					$(".vitals_panel").slideUp();
+				});
+
+			});
+
+		</script>
+
+	</body>
+</html>
+
+<!-- ui-dialog -->
+<div id="dialog" style="display: none;" title="New Patient">
+	<form class="form-horizontal well">
+		<fieldset>
+			<div class="pre_first_half">
+				<div class="control-group">
+					<label class="control-label" for="input01">First Name</label>
+					<div class="controls">
+						<input type="text"  id="input01">
+						<p class="help-inline">
+
+						</p>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="input01">Last Name</label>
+					<div class="controls">
+						<input type="text"  id="input01">
+						<p class="help-inline">
+
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="first_half">
+				<div class="control-group">
+					<label class="control-label" for="input01">Middle Name</label>
+					<div class="controls">
+						<input type="text"  id="input01">
+						<p class="help-inline">
+
+						</p>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Gender</label>
+					<div class="controls">
+						<select id="select01">
+							<option>Male</option>
+							<option>Female</option>
+						</select>
+						<p class="help-inline">
+
+						</p>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputError">Date of Birth</label>
+					<div class="controls">
+						<input class="input-mini">
+						<input class="input-mini">
+						<input class="input-mini">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-actions first">
+					<button type="button" class="btn ui-primary continue">
+						<i class="icon-ok"></i> Continue
+					</button>
+					<button type="button" class="btn btn-inverse close_dialog">
+						<i class="icon-off icon-white"></i> Cancel
+					</button>
+
+				</div>
+
+			</div>
+			<div class="second_half" style="display: none;">
+				<div class="control-group">
+					<label class="control-label" for="inputSuccess">Address</label>
+					<div class="controls">
+						<textarea type="text" id="inputSuccess"></textarea>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputSuccess">Telephone No.</label>
+					<div class="controls">
+						<input type="text" id="inputSuccess"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSuccess">Identification Number</label>
+					<div class="controls">
+						<input type="text" id="inputSuccess"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSuccess">NHIS Number</label>
+					<div class="controls">
+						<input type="text" id="inputSuccess"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="selectError">Sponsorship Method</label>
+					<div class="controls">
+						<select id="selectError">
+							<option>National Health Insurance</option>
+							<option>Momentum Insurance</option>
+							<option>Liberty Insurance</option>
+
+						</select>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="form-actions second">
+					<button type="button" class="btn ui-primary proceed">
+						<i class="icon-ok"></i> Continue
+					</button>
+					<button type="button" class="btn btn-info back">
+						<i class="icon-arrow-left icon-white"></i> Previous
+					</button>
+					<button type="button" class="btn btn-inverse close_dialog">
+						<i class="icon-off icon-white"></i> Cancel
+					</button>
+
+				</div>
+			</div>
+
+			<div style="display: none;" class="third_half">
+				<div class="control-group">
+					<label class="control-label" for="inputSuccess">Membership ID</label>
+					<div class="controls">
+						<input type="text" id="inputSuccess"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputSuccess">Benefit Plan</label>
+					<div class="controls">
+						<input type="text" id="inputSuccess"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputSuccess">Company</label>
+					<div class="controls">
+						<input type="text" id="inputSuccess"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<button type="submit" class="btn ui-primary ">
+						<i class="icon-ok"></i> Save changes
+					</button>
+					<button type="button" class="btn btn-info previous">
+						<i class="icon-arrow-left icon-white"></i> Previous
+					</button>
+					<button type="button" class="btn btn-inverse close_dialog">
+						<i class="icon-off icon-white"></i> Cancel
+					</button>
+
+				</div>
+
+			</div>
+		</fieldset>
+	</form>
+</div>
+<div id="user_summary" style="display: none;" title="Patient Information">
+
+	<div style="margin-top: 12px; padding-top: 25px;  padding-bottom: 25px; text-align: center;" class="thumbnail span2">
+		<img src="images/default_profile.png" />
+
+		<input type="button" rel="tooltip" data-original-title="Click to Update" class="btn btn-large btn-info update_sponsor" value="Momentum Ghana" />
+	</div>
+
+	<table class="table span3 right table table-bordered">
+		<tr>
+			<td> First Name</td>
+
+			<td> Emmanuel</td>
+		</tr>
+		<tr>
+			<td> Last Name</td>
+
+			<td> Addo-Yirenkyi </td>
+		</tr>
+		<tr>
+			<td> Gender </td>
+
+			<td> Male</td>
+		</tr>
+		<tr>
+			<td> Age </td>
+
+			<td> 26 Yrs</td>
+		</tr>
+		<tr>
+			<td> Employer </td>
+
+			<td> Claimsync Ghana</td>
+		</tr>
+
+		<tr>
+			<td colspan="2" style="text-align: center;">
+			<button type="button" class="btn btn-small btn-primary vitals_up">
+				<i class="iconicon-edit"></i> Update Vitals
+			</button></td>
+		</tr>
+	</table>
+
+	<div class="clearfix"></div>
+
+	<div style="display: none;" class="vitals_panel thumbnail well ">
+
+		<form class="form-horizontal">
+
+			<fieldset>
+				<legend>
+					<h5 style="font-weight: light;">Vitals </h5>
+				</legend>
+				<div class="control-group">
+					<label class="control-label" for="input01">Sponsor Type</label>
+					<div class="controls">
+						<select id="select01">
+							<option>Cash Paying</option>
+							<option>Private  Insurance </option>
+							<option>Company Benefits </option>
+							<option>National Health Insurance </option>
+
+						</select>
+						<p class="help-inline">
+							Select Appropriately
+						</p>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Sponsor </label>
+					<div class="controls">
+						<select id="select01">
+							<option>Momentum Ghana</option>
+							<option>GLICO Mutual Health </option>
+							<option>First Fidelity Insurance</option>
+							<option>Liberty Mutual </option>
+							<option>MedX Health Systems</option>
+							<option>Premier Mutual Insurance</option>
+						</select>
+
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Benefit Plan</label>
+					<div class="controls">
+						<select id="select01">
+							<option>Executive </option>
+							<option>Premium </option>
+							<option>Gold</option>
+							<option>Regular</option>
+						</select>
+
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Policy Number</label>
+					<div class="controls">
+						<input type="text" />
+
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="button" class="btn ui-primary ">
+						<i class="icon-ok"></i> Save changes
+					</button>
+					<button type="button" class="btn btn-inverse vitals_cancel">
+						<i class="icon-off icon-white"></i> Cancel
+					</button>
+
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div style="display: none;" class="sponsor_panel thumbnail well ">
+
+		<form class="form-horizontal">
+
+			<fieldset>
+				<legend>
+					<h5 style="font-weight: light;">Sponsorship Management </h5>
+				</legend>
+				<div class="control-group">
+					<label class="control-label" for="input01">Sponsor Type</label>
+					<div class="controls">
+						<select id="select01">
+							<option>Cash Paying</option>
+							<option>Private  Insurance </option>
+							<option>Company Benefits </option>
+							<option>National Health Insurance </option>
+
+						</select>
+						<p class="help-inline">
+							Select Appropriately
+						</p>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Sponsor </label>
+					<div class="controls">
+						<select id="select01">
+							<option>Momentum Ghana</option>
+							<option>GLICO Mutual Health </option>
+							<option>First Fidelity Insurance</option>
+							<option>Liberty Mutual </option>
+							<option>MedX Health Systems</option>
+							<option>Premier Mutual Insurance</option>
+						</select>
+
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Benefit Plan</label>
+					<div class="controls">
+						<select id="select01">
+							<option>Executive </option>
+							<option>Premium </option>
+							<option>Gold</option>
+							<option>Regular</option>
+						</select>
+
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Policy Number</label>
+					<div class="controls">
+						<input type="text" />
+
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="button" class="btn ui-primary ">
+						<i class="icon-ok"></i> Save changes
+					</button>
+					<button type="button" class="btn btn-inverse slide_up">
+						<i class="icon-off icon-white"></i> Cancel
+					</button>
+
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+	<div class="clearfix"></div>
+
+	<hr />
+	<ul class="breadcrumb">
+		<li>
+			<a  href="#">Patient History </a>
+		</li>
+
+	</ul>
+	<table class="table table-bordered example">
+		<thead>
+			<tr>
+				<th>Visit Date </th>
+				<th>Visit Type </th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="patient_visit" rel="popover" data-original-title="<span style='text-align:center;'> <h3>Visit Summary </h3> <h5> Emmanuel Addo-Yirenkyi </h5> <h5> 15th April, 2012 </h5> <span>"
+				data-content="<table class='table table-bordered'> <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr> <tr>
+				<td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> </table> "> fdsfs </td>
+				<td>fsdfs</td>
+			</tr>
+			<tr>
+				<td class="patient_visit" rel="popover" data-original-title="<span style='text-align:center;'> <h3>Visit Summary </h3> <h5> Emmanuel Addo-Yirenkyi </h5> <h5> 15th April, 2012 </h5> <span>"
+				data-content="<table class='table table-bordered'> <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr> <tr>
+				<td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> </table> "> fdsfs </td>
+				<td>fsdfs</td>
+			</tr>
+			<tr>
+				<td class="patient_visit" rel="popover" data-original-title="<span style='text-align:center;'> <h3>Visit Summary </h3> <h5> Emmanuel Addo-Yirenkyi </h5> <h5> 15th April, 2012 </h5> <span>"
+				data-content="<table class='table table-bordered'> <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr> <tr>
+				<td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> </table> "> fdsfs </td>
+				<td>fsdfs</td>
+			</tr>
+			<tr>
+				<td class="patient_visit" rel="popover" data-original-title="<span style='text-align:center;'> <h3>Visit Summary </h3> <h5> Emmanuel Addo-Yirenkyi </h5> <h5> 15th April, 2012 </h5> <span>"
+				data-content="<table class='table table-bordered'> <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr>  <tr> <td> Hello </td> <td> Hello </td> </tr> <tr>
+				<td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> <tr> <td> Hello </td> <td> Hello </td> </tr> </table> "> fdsfs </td>
+				<td>fsdfs</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+

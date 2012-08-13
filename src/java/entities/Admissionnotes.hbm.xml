@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2012 3:00:10 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Admissionnotes" table="admissionnotes" catalog="extended">
+        <id name="noteid" type="java.lang.Integer">
+            <column name="noteid" />
+            <generator class="identity" />
+        </id>
+        <property name="visitid" type="int">
+            <column name="visitid" not-null="true" />
+        </property>
+        <property name="doctorsid" type="string">
+            <column name="doctorsid" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

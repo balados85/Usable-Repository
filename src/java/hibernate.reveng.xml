@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+    <schema-selection match-catalog="extended"/>
+    <table-filter match-name="sponsorhipdetails"/>
+    <table-filter match-name="folder"/>
+    <table-filter match-name="patient"/>
+    <table-filter match-name="sponsorship"/>
+    <table-filter match-name="units"/>
+    <table-filter match-name="consultingrooms"/>
+    <table-filter match-name="visitationtable"/> 
+    <table-filter match-name="treatment"/> 
+    <table-filter match-name="investigation"/> 
+    <table-filter match-name="diagnosis"/> 
+    <table-filter match-name="patientdiagnosis"/> 
+    <table-filter match-name="patienttreatment"/> 
+    <table-filter match-name="patientinvestigation"/> 
+    <table-filter match-name="nhistreatment"/> 
+    <table-filter match-name="nhisinvestigation"/>    
+    <table-filter match-name="appoint"/> 
+    <table-filter match-name="post"/> 
+    <table-filter match-name="receive"/> 
+    <table-filter match-name="drugtype"/> 
+    <table-filter match-name="itemtype"/> 
+    <table-filter match-name="items_table"/> 
+    <table-filter match-name="dosagemonitor"/> 
+    <table-filter match-name="newborn"/> 
+    <table-filter match-name="symptoms"/> 
+    <table-filter match-name="ward"/> 
+    <table-filter match-name="wardnote"/> 
+    <table-filter match-name="admissionnotes"/> 
+</hibernate-reverse-engineering>

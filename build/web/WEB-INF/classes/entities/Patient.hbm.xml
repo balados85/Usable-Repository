@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2012 3:00:10 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Patient" table="patient" catalog="extended">
+        <id name="patientid" type="string">
+            <column name="patientid" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="fname" type="string">
+            <column name="fname" length="100" />
+        </property>
+        <property name="lname" type="string">
+            <column name="lname" length="100" />
+        </property>
+        <property name="midname" type="string">
+            <column name="midname" length="100" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="10" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="200" />
+        </property>
+        <property name="employer" type="string">
+            <column name="employer" length="100" />
+        </property>
+        <property name="dateofbirth" type="date">
+            <column name="dateofbirth" length="10" />
+        </property>
+        <property name="contact" type="string">
+            <column name="contact" length="100" />
+        </property>
+        <property name="emergencyperson" type="string">
+            <column name="emergencyperson" length="100" />
+        </property>
+        <property name="emergencycontact" type="string">
+            <column name="emergencycontact" length="100" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="dateofregistration" type="date">
+            <column name="dateofregistration" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

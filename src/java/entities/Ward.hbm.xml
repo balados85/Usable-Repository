@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2012 3:00:10 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Ward" table="ward" catalog="extended">
+        <id name="wardid" type="java.lang.Integer">
+            <column name="wardid" />
+            <generator class="identity" />
+        </id>
+        <property name="wardname" type="string">
+            <column name="wardname" not-null="true" />
+        </property>
+        <property name="numberofbeds" type="int">
+            <column name="numberofbeds" not-null="true" />
+        </property>
+        <property name="occupied" type="int">
+            <column name="occupied" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

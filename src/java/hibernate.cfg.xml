@@ -34,9 +34,8 @@
     <mapping resource="entities/Ward.hbm.xml"/>
     <mapping resource="entities/Dosagemonitor.hbm.xml"/>
     <mapping resource="entities/Newborn.hbm.xml"/>
-    
     <mapping resource="entities/Admissionnotes.hbm.xml"/>
-    
     <mapping resource="entities/Wardnote.hbm.xml"/>
+    <mapping resource="entities/Transferlocation.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

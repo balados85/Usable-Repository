@@ -120,6 +120,20 @@ public class HMSHelper {
         session.getTransaction().commit();
         return unit;
     }
+    
+    public Wardnote addWardNote(int wardid, String staffid, String note) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Wardnote unit = new Wardnote();
+        unit.setNote(note);
+        unit.setNurseid(staffid);
+        unit.setWardid(wardid);
+        unit.setDate(new Date());
+
+        session.save(unit);
+        session.getTransaction().commit();
+        return unit;
+    }
 
     public Admissionnotes addAdmissionNoteint (int visitid, String doctorid, String note) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -219,6 +233,23 @@ public class HMSHelper {
         session.save(investigationObj);
         session.getTransaction().commit();
         return investigationObj;
+    }
+    
+    public Transferlocation addTransferLocation(int visitid, Date date, String location, String doctorid, int diagnosis, String note) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Transferlocation transferlocation = new Transferlocation();
+        transferlocation.setDoctorid(doctorid);
+        transferlocation.setLocation(location);
+        transferlocation.setNote(note);
+        transferlocation.setVisitdate(date);
+        transferlocation.setVisitid(visitid);
+        transferlocation.setDiagnosisid(diagnosis);
+        
+
+        session.save(transferlocation);
+        session.getTransaction().commit();
+        return transferlocation;
     }
 
     public Patientinvestigation addPatientInvestigation(String patientid, String code, int investigationid, String result, Double price, int visitationid, String visitDate, String performed, String notes, int qty) throws ParseException {
@@ -424,6 +455,31 @@ public class HMSHelper {
         return result;
     }
 
+    public List listTransfers() {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Transferlocation").list();
+        session.getTransaction().commit();
+        return result;
+    }
+    
+    public List listTransfersByDate(Date date) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Transferlocation where visitdate='"+date+"'").list();
+        session.getTransaction().commit();
+        return result;
+    }
+    
+    public List listTransfersByVisitid(int visitid) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Transferlocation where visitid="+visitid).list();
+        session.getTransaction().commit();
+        return result;
+    }
+
+    
     public List listPatients() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -575,6 +631,40 @@ public class HMSHelper {
         session.getTransaction().commit();
         return result;
     }
+    
+     public List listWardNotes() {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Wardnote").list();
+        session.getTransaction().commit();
+        return result;
+    }
+     
+      public List listWardNoteByWardid(int id) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Wardnote where wardid="+id).list();
+        session.getTransaction().commit();
+        return result;
+    }
+      
+      public List listWardNoteByStaffid(String staffid) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Wardnote where nurseid='"+staffid+"'").list();
+        session.getTransaction().commit();
+        return result;
+    }
+      
+      public List listWardNoteByDate(String date) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Wardnote where date='"+date+"'").list();
+        session.getTransaction().commit();
+        return result;
+    }
+      
+      
 
     public List listInvestigation() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -1096,6 +1186,18 @@ public class HMSHelper {
         return symptoms;
     }
     
+    public Wardnote updateWardnote(int noteid, String note) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Wardnote wardnote = (Wardnote) session.get(Wardnote.class, noteid);
+        wardnote.setNote(note);
+        
+        session.update(wardnote);
+        session.getTransaction().commit();
+        return wardnote;
+    }
+    
     public Newborn updateNewbornInfo(int newbornid,Date year, String month, String day, Date time, String patientid, String midwife, String complications) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -1186,7 +1288,27 @@ public class HMSHelper {
         session.getTransaction().commit();
         return folder;
     }
+    
+    public Wardnote getWardnoteByid(int noteid) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
 
+        Wardnote wardnote = (Wardnote) session.get(Wardnote.class, noteid);
+
+        session.getTransaction().commit();
+        return wardnote;
+    }
+
+    public Transferlocation getTransferLocationByid(int symptomid) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Transferlocation transferlocation = (Transferlocation) session.get(Transferlocation.class, symptomid);
+
+        session.getTransaction().commit();
+        return transferlocation;
+    }
+    
     public Units getUnit(String unitid) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -1349,6 +1471,17 @@ public class HMSHelper {
         session.beginTransaction();
         //   Query result = session.createQuery("delete from ItemsTable where items_id = "+id);
         Ward ward = (Ward) session.get(Ward.class, id);
+        session.delete(ward);
+        session.getTransaction().commit();
+
+        return ward;
+    }
+    
+    public Wardnote deleteWardNote(int id) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        //   Query result = session.createQuery("delete from ItemsTable where items_id = "+id);
+        Wardnote ward = (Wardnote) session.get(Wardnote.class, id);
         session.delete(ward);
         session.getTransaction().commit();
 

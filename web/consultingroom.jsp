@@ -757,7 +757,7 @@
                         %>
                         <tr>
                             <td>
-                                <%=patientinvestigation.getInvestigationid()%> 
+                                <%=mgr.getInvestigation(patientinvestigation.getInvestigationid()).getInvestigation() %> 
                             </td>
                             <td>
                                 <%=patientinvestigation.getResult()%> 
@@ -790,7 +790,10 @@
                 <input type="hidden" name="patientid" value="<%=visit.getPatientid()%>"/>
                 <input type="hidden" name="id" value="<%=visit.getVisitid()%>"/> 
                 <br />
-                <label>Admit Patient</label> <input type="checkbox" name="admission" value="In Patient"/>
+                <label>Admit Patient</label>
+                <%if(visit.getPatientstatus().equals("In Patient")){%>
+                    <input type="checkbox" checked="checked" name="admission" value="In Patient"/>
+               <% }else{%><input type="checkbox" name="admission" value="In Patient"/><%}%>
                 <br/>
                 <button type="submit" name="action" value="Forward" class="btn btn-danger btn-large">
 

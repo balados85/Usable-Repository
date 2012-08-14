@@ -29,4 +29,5 @@
     <table-filter match-name="ward"/> 
     <table-filter match-name="wardnote"/> 
     <table-filter match-name="admissionnotes"/> 
+    <table-filter match-name="transferlocation"/> 
 </hibernate-reverse-engineering>

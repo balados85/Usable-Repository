@@ -212,6 +212,7 @@
                                                                     <th> Item </th>
 
                                                                     <th> Unit Cost </th>
+                                                                     <th>Quantity </th>
                                                                     <th> Total </th>
 
                                                                 </tr>
@@ -231,6 +232,7 @@
                                                                         <%=mgr.getTreatment(ptPatienttreatments.getTreatmentid()).getTreatment()%> </td>
 
                                                                     <td><%=ptPatienttreatments.getPrice()%> </td>
+                                                                    <td><%=ptPatienttreatments.getQuantity()%> </td>
                                                                     <td><%= (ptPatienttreatments.getQuantity() * ptPatienttreatments.getPrice())%></td>
 
                                                                     <% total = total + (ptPatienttreatments.getQuantity() * ptPatienttreatments.getPrice());%>
@@ -245,8 +247,10 @@
                                                                         data-content="<table class='table table-bordered'> <tr> <td> Gender  </td> <td> <%=mgr.getPatientByID(vst.getPatientid()).getGender()%> </td> </tr> <tr> <td> Employer </td> <td> <%=mgr.getPatientByID(vst.getPatientid()).getEmployer()%> </td>  </tr> <tr> <td> Sponsor </td> <td> <%=mgr.getSponsor(mgr.sponsorshipDetails(vst.getPatientid()).getSponsorid()).getSponsorname()%></td> </tr> <tr>
                                                                         <td> Policy Number </td> <td> <%=mgr.sponsorshipDetails(vst.getPatientid()).getMembershipid()%> </td> </tr> <tr> <td> Benefit Plan </td> <td> <%=mgr.sponsorshipDetails(vst.getPatientid()).getBenefitplan()%> </td> </tr>  </table> ">
                                                                         <%=mgr.getInvestigation(patientinvestigation.getInvestigationid()).getInvestigation()%> </td>
-                                                                    <td></td>
-                                                                    <td><%=patientinvestigation.getPrice()%> </td>
+                                                                    <td><%=patientinvestigation.getPrice()%></td>
+                                                                    <td>Once </td>
+                                                                    <td><%=patientinvestigation.getPrice()%></td>
+                                                                   
                                                                     <% total = total + patientinvestigation.getPrice();%> 
 
                                                                 </tr>
@@ -254,6 +258,7 @@
                                                                 <%}%> 
                                                                 <tr>
                                                                     <td>Total Cost</td>
+                                                                    <td></td>
                                                                     <td></td>
                                                                     <td><%=total%></td>
                                                                 </tr>
@@ -285,6 +290,12 @@
 
                                                                 %>
                                                             </select>
+                                                            <br/>
+                                                            
+                                                             <button type="submit" name="action" value="Generate Receipt" class="btn btn-danger btn-large">
+
+                    <i class="icon-white icon-arrow-right"> </i> Forward
+                </button>
                                                         </div>
                                                     </form>
                                                 </div>

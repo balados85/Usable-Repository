@@ -375,10 +375,37 @@
 
                                                         <div style="text-align: center;" class="form-actions">
 
-                                                            <input type="hidden" name="unitid" value="Accounts"/>
+                                                           
                                                             <input type="hidden" name="patient" value="<%=vst.getPatientid()%>"/>
                                                             <input type="hidden" name="visitid" value="<%=vst.getVisitid()%>"/>
                                                             <!-- <input type="submit" name="action" value="Forward to Accounts"/>-->
+                                                             <select name="unitid">
+                                                                <%
+                                                                    List units = mgr.listUnits();
+                                                                    for (int j = 0; j < units.size(); j++) {
+                                                                        Units unit = (Units) units.get(j);
+                                                                %>
+                                                                <option value="<%=unit.getUnitname()%>"><%=unit.getUnitname()%></option> 
+                                                                <% }
+                                                                    List wards = mgr.listWard();
+                                                                    for (int j = 0; j < wards.size(); j++) {
+                                                                        Ward ward = (Ward) wards.get(j);
+                                                                %>
+                                                                <option value="<%=ward.getWardname()%>"><%=ward.getWardname()%></option> 
+                                                                <% }List consultingrooms = mgr.listConRooms();
+                                                                    for (int j = 0; j < consultingrooms.size(); j++) {
+                                            Consultingrooms consultingroom = (Consultingrooms) consultingrooms.get(j);
+                                    %>
+                                    <option value="<%=consultingroom.getConsultingroom()%>"><%=consultingroom.getConsultingroom()%></option> 
+                                    <% }
+
+                                    
+
+                    %>
+
+                                                                %>
+                                                            </select>
+                                                            <br/>
                                                             <button class="btn btn-info" name="action" value="Forward to Accounts">
                                                                 <i class="icon-white icon-check"></i> Forward to Accounts
                                                             </button>

@@ -185,6 +185,12 @@
                 document.getElementById( 'append' ).appendChild( tr );
                 //return false;
             }
+            
+            function updateDosage(){
+                
+                alert("did");
+                
+            }
         </script>
 
         <script>
@@ -252,7 +258,7 @@
                                         vs = mgr.currentVisitations(visit.getVisitid());
 
                                         // List patientHistory = mgr.patientHistory(visit.getPatientid());
-%>
+                                %>
                                 <tr>
                                     <td>
                                         <a href="condetails.jsp?patientid=<%=visit.getPatientid()%>&id=<%=visit.getVisitid()%>"> 
@@ -279,14 +285,7 @@
                     </div>
                 </div> 
             </section>
-
-
-
         </div>
-
-
-
-
         <%@include file="widgets/footer.jsp" %>
 
     </div><!-- /container -->
@@ -294,14 +293,7 @@
 
     <%@include file="widgets/javascripts.jsp" %>
 
-    <%   String file = "";
-        String file2 = "";
-
-        /*  if (mgr.sponsorshipDetails(visit.getPatientid()).getType().equalsIgnoreCase("nhis")) {
-         file = "gettreatment.jsp";
-         } else {
-         file = "getnhistreatment.jsp";
-         }*/
+    <%
 
         for (int i = 0; i < visits.size(); i++) {
             Visitationtable visit = (Visitationtable) visits.get(i);
@@ -432,80 +424,84 @@
                     </li>
 
                 </ul>
-                <table class="table">
+                <form action="action/wardaction.jsp" method="POST">
+                    <table class="table">
 
-                    <thead style="color: black;">
-                        <tr>
-                            <th>
-                                Medication
-                            </th>
-                            <th>
-                                Morning
-                            </th>
-                            <th>
-                                Afternoon
-                            </th>
-                            <th>
-                                Evening
-                            </th>
-                            <th>
-                                Others
-                            </th>
+                        <thead style="color: black;">
+                            <tr>
+                                <th>
+                                    Medication
+                                </th>
+                                <th>
+                                    Morning
+                                </th>
+                                <th>
+                                    Afternoon
+                                </th>
+                                <th>
+                                    Evening
+                                </th>
+                                <th>
+                                    Others
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%List dmonitors = mgr.listDosageMonitor(visit.getVisitid());
+                                for (int t = 0; t < dmonitors.size(); t++) {
+                                    Dosagemonitor dosagemonitor = (Dosagemonitor) dmonitors.get(t);
+
+                            %>
+
+                            <tr>
+                                <td> <%=mgr.getTreatment(dosagemonitor.getPatienttreatmentid()).getTreatment()%>
+                                </td>  
+                                <td> 
+                                    <%
+                                        if (dosagemonitor.getMorning().equalsIgnoreCase("No")) {%>
+                                    <input type="checkbox" id="morning<%=t%>" value="<%=dosagemonitor.getId()%>"/>
+
+                                    <%  } else {
+                                    %><%=dosagemonitor.getMorning()%>
+                                    <%}%>
+                                </td> 
+                                <td> 
+                                    <%
+                                        if (dosagemonitor.getAfternoon().equalsIgnoreCase("No")) {%>
+                                    <input type="checkbox" id="afternoon<%=t%>" value="<%=dosagemonitor.getId()%>"/>
+
+                                    <%  } else {
+                                    %><%=dosagemonitor.getAfternoon()%>
+                                    <%}%>
+                                </td> 
+                                <td> 
+                                    <%
+                                        if (dosagemonitor.getEvening().equalsIgnoreCase("No")) {%>
+                                    <input type="checkbox" id="evening<%=t%>" value="<%=dosagemonitor.getId()%>"/>
+
+                                    <%  } else {
+                                    %><%=dosagemonitor.getEvening()%>
+                                    <%}%>
+                                </td> 
+                                <td> 
+                                    <%
+                                        if (dosagemonitor.getGivenday() == null) {%>
+                                    Not Started
+
+                                    <%  } else {
+                                    %><%=dosagemonitor.getGivenday()%>
+                                    <%}%>
+                                </td> 
+                        <input type="hidden" id="<%=dosagemonitor.getId()%>" value="<%=dosagemonitor.getId()%>"/>
+                        <td><input type="submit" name="updosage" value="update" onlick = "updateDosage()"/></td>
+
                         </tr>
-                    </thead>
-                    <tbody>
-                        <%List dmonitors = mgr.listDosageMonitor(visit.getVisitid());
-                            for (int t = 0; t < dmonitors.size(); t++) {
-                                Dosagemonitor dosagemonitor = (Dosagemonitor) dmonitors.get(t);
+                        <%}%> 
 
-                        %>
 
-                        <tr>
-                            <td> <%=mgr.getTreatment(dosagemonitor.getPatienttreatmentid()).getTreatment()%>
-                            </td>  
-                            <td> 
-                                <%
-                                    if (dosagemonitor.getMorning().equalsIgnoreCase("NO")) {%>
-                                <input type="checkbox" name="morning<%=t%>" value="<%=dosagemonitor.getId()%>"/>
-
-                                <%  } else {
-                                %><%=dosagemonitor.getMorning()%>
-                                <%}%>
-                            </td> 
-                            <td> 
-                                <%
-                                    if (dosagemonitor.getAfternoon().equalsIgnoreCase("NO")) {%>
-                                <input type="checkbox" name="afternoon<%=t%>" value="<%=dosagemonitor.getId()%>"/>
-
-                                <%  } else {
-                                %><%=dosagemonitor.getAfternoon()%>
-                                <%}%>
-                            </td> 
-                            <td> 
-                                <%
-                                    if (dosagemonitor.getEvening().equalsIgnoreCase("NO")) {%>
-                                <input type="checkbox" name="evening<%=t%>" value="<%=dosagemonitor.getId()%>"/>
-
-                                <%  } else {
-                                %><%=dosagemonitor.getEvening()%>
-                                <%}%>
-                            </td> 
-                            <td> 
-                                <%
-                                    if (dosagemonitor.getGivenday() == null) {%>
-                                Not Started
-
-                                <%  } else {
-                                %><%=dosagemonitor.getGivenday()%>
-                                <%}%>
-                            </td> 
-
-                        <tr>
-                            <%}%> 
-                        </tr>
-                    </tbody>
-                </table>
-
+                        </tbody>
+                    </table>
+                </form>
                 <br/>
 
             </div>
@@ -514,9 +510,7 @@
                     <li>
                         <a style="text-align: center;">History</a>
                     </li>
-
                 </ul>
-
                 <table class="">
                     <thead>
                         <tr>
@@ -524,19 +518,18 @@
                                 Visit Date
                             </td>
                             <td>
+                                Diagnosis
 
-                                Investigation
                             </td>
                             <td>
+                                Investigation
 
-                                Diagnosis
                             </td>
                             <td>
 
                                 Treatment
                             </td>
                         </tr>
-
                     </thead>
                     <tbody>
 
@@ -897,11 +890,11 @@
             </div>
             <div style="display: none;" class="well thumbnail center results">
                 <ul class="breadcrumb">
-                        <li>
-                            <a href="#" onclick="showdInvestigation()">Doctor's Notes</a>
-                        </li>
+                    <li>
+                        <a href="#" onclick="showdInvestigation()">Doctor's Notes</a>
+                    </li>
 
-                    </ul>
+                </ul>
                 <table cellpadding="0" cellspacing="0" border="0" class="display example table">
 
                     <thead>
@@ -912,11 +905,11 @@
                         </tr>
                     <tbody>
                         <% List notes = mgr.listPatientAdmissionNote(visit.getVisitid());
-                        
-                        
-                        for(int nt=0;nt<notes.size();nt++){ 
-                            Admissionnotes admissionnotes = (Admissionnotes)notes.get(nt);
-%>
+
+
+                            for (int nt = 0; nt < notes.size(); nt++) {
+                                Admissionnotes admissionnotes = (Admissionnotes) notes.get(nt);
+                        %>
                         <tr>
                             <td><%=admissionnotes.getDate()%></td>
                             <td><%=admissionnotes.getNote()%></td>
@@ -927,8 +920,8 @@
                     </thead>
 
                 </table>
-                    Add Notes
-                    <textarea name="admissionnote"></textarea>
+                Add Notes
+                <textarea name="admissionnote"></textarea>
             </div>
 
             <div class="form-actions center" >

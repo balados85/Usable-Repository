@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 14, 2012 at 03:08 PM
+-- Generation Time: Aug 16, 2012 at 08:59 AM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -32,12 +32,14 @@ CREATE TABLE IF NOT EXISTS `admissionnotes` (
   `note` text NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`noteid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `admissionnotes`
 --
 
+INSERT INTO `admissionnotes` (`noteid`, `visitid`, `doctorsid`, `note`, `date`) VALUES
+(1, 128, '', 'improved', '2012-08-15');
 
 -- --------------------------------------------------------
 
@@ -1017,7 +1019,7 @@ CREATE TABLE IF NOT EXISTS `dosagemonitor` (
   `evening` varchar(255) DEFAULT NULL,
   `givenday` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `dosagemonitor`
@@ -1025,7 +1027,9 @@ CREATE TABLE IF NOT EXISTS `dosagemonitor` (
 
 INSERT INTO `dosagemonitor` (`id`, `visitid`, `patienttreatmentid`, `morning`, `afternoon`, `evening`, `givenday`) VALUES
 (1, 126, 5, 'No', 'No', 'No', NULL),
-(2, 128, 4, 'No', 'No', 'No', NULL);
+(2, 128, 4, 'Yes', 'No', 'No', '2012-08-14'),
+(3, 128, 3, 'No', 'No', 'No', NULL),
+(4, 128, 6, 'No', 'No', 'No', NULL);
 
 -- --------------------------------------------------------
 
@@ -1076,7 +1080,7 @@ INSERT INTO `folder` (`foldernumber`, `shelvenumber`, `status`, `previouslocatio
 ('Eben123', 'N-0001', 'Room 1', NULL),
 ('PAT1001', 'M-0001', 'Accounts', 'Male ward'),
 ('EGON11', 'A-0001', 'OPD', NULL),
-('TEST1', 'A-0001', 'OPD', 'Pharmacy');
+('TEST1', 'A-0001', 'Records', 'Records');
 
 -- --------------------------------------------------------
 
@@ -1604,7 +1608,7 @@ CREATE TABLE IF NOT EXISTS `patientinvestigation` (
   `performed` varchar(20) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=310 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=312 ;
 
 --
 -- Dumping data for table `patientinvestigation`
@@ -1914,6 +1918,8 @@ INSERT INTO `patientinvestigation` (`id`, `patientid`, `code`, `investigationid`
 (301, 'EGON11', 'CODE', 24, 'negative', 16, 0, 100, '', 'yes', '2012-08-07'),
 (302, 'TEST1', 'CODE', 13, '', 16, 0, 126, '', '', '2012-08-13'),
 (303, 'TEST1', 'CODE', 12, '', 12, 0, 126, '', '', '2012-08-13'),
+(311, 'TEST1', 'CODE', 18, '', 18, 0, 128, 'testing abi', '', '2012-08-15'),
+(310, 'TEST1', 'CODE', 13, '', 16, 0, 128, 'testing abi', '', '2012-08-15'),
 (309, 'TEST1', 'CODE', 16, 'negative', 15, 0, 128, '', 'yes', '2012-08-14'),
 (308, 'TEST1', 'CODE', 12, 'positive', 12, 0, 128, '', 'yes', '2012-08-14');
 
@@ -1937,7 +1943,7 @@ CREATE TABLE IF NOT EXISTS `patienttreatment` (
   `note` varchar(250) DEFAULT NULL,
   `dispensed` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=327 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=329 ;
 
 --
 -- Dumping data for table `patienttreatment`
@@ -2266,7 +2272,9 @@ INSERT INTO `patienttreatment` (`id`, `patientid`, `code`, `treatmentid`, `dosag
 (320, 'EGON11', 'CODE', 14, 'morning', 100, '2012-08-07', 45, 4, 'Syrup', '', 'yes'),
 (321, 'TEST1', 'CODE', 4, 'mornings', 126, '2012-08-13', 5, 3, 'Syrup', '', ''),
 (322, 'TEST1', 'CODE', 5, 'morning, afternoon, evening', 126, '2012-08-13', 80, 2, 'Capsule', '', ''),
-(326, 'TEST1', 'CODE', 4, 'thrice', 128, '2012-08-14', 5, 2, 'Syrup', '', '');
+(327, 'TEST1', 'CODE', 3, 'every morning', 128, '2012-08-15', 20, 2, 'Tab', 'test', ''),
+(326, 'TEST1', 'CODE', 4, 'thrice', 128, '2012-08-14', 5, 2, 'Syrup', '', ''),
+(328, 'TEST1', 'CODE', 6, 'every morning', 128, '2012-08-15', 100, 4, 'Syrup', 'test', '');
 
 -- --------------------------------------------------------
 
@@ -2426,12 +2434,16 @@ CREATE TABLE IF NOT EXISTS `transferlocation` (
   `diagnosisid` int(11) NOT NULL,
   `note` text,
   PRIMARY KEY (`transferid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `transferlocation`
 --
 
+INSERT INTO `transferlocation` (`transferid`, `visitid`, `visitdate`, `location`, `doctorid`, `diagnosisid`, `note`) VALUES
+(3, 128, '2012-08-15', 'Korle Bu', 'doctorid', 0, 'notes'),
+(4, 128, '2012-08-15', 'Korle Bu', 'doctorid', 0, 'notes'),
+(5, 128, '2012-08-15', 'korle Bu', 'doctorid', 0, 'notes');
 
 -- --------------------------------------------------------
 
@@ -4489,7 +4501,7 @@ INSERT INTO `visitationtable` (`visitid`, `patientid`, `date`, `vitals`, `doctor
 (120, 'pat1001', '2012-08-12', 'Temperature: 23 - Weight: 23 - Height: 23 - Blood Pressure: 23 - Pulse: 23\r\n\r\n                        \r\n                ', NULL, 'Accounts', 'Out Patient', NULL, NULL, 'Accounts'),
 (126, 'TEST1', '2012-08-13', 'Temperature: 12 - Weight: 12 - Height: 12 - Blood Pressure: 12 - Pulse: 12\r\n\r\n                        \r\n                \r\n                        \r\n                ', '', 'Male ward', 'In Patient', '2012-08-13', NULL, 'Male ward'),
 (123, 'PAT123', '2012-08-13', 'Temperature: 12 - Weight: 12 - Height: 12 - Blood Pressure: 12 - Pulse: 12\r\n\r\n                        \r\n                ', NULL, 'Room 1', 'Out Patient', NULL, NULL, 'Room 1'),
-(128, 'TEST1', '2012-08-14', 'Temperature: 12 - Weight: 12 - Height: 12 - Blood Pressure: 12 - Pulse: 12\r\n\r\n                        \r\n                \r\n                        \r\n                \r\n                        \r\n                ', NULL, 'Male Ward', 'In Patient', '2012-08-14', NULL, 'Pharmacy');
+(128, 'TEST1', '2012-08-15', 'Temperature: 12 - Weight: 12 - Height: 12 - Blood Pressure: 12 - Pulse: 12\r\n\r\n                        \r\n                \r\n                        \r\n                \r\n                        \r\n                ', NULL, 'Records', 'Transfer', '2012-08-15', '2012-08-15', 'Records');
 
 -- --------------------------------------------------------
 

@@ -275,6 +275,12 @@ for (int j = 0; j < consultingrooms.size(); j++) {
                                     %>
                                     <option value="<%=consultingroom.getConsultingroom()%>"><%=consultingroom.getConsultingroom()%></option> 
                                     <% }
+                         List wards = mgr.listWard();
+                                                                    for (int j = 0; j < wards.size(); j++) {
+                                                                        Ward ward = (Ward) wards.get(j);
+                                                                %>
+                                                                <option value="<%=ward.getWardname()%>"><%=ward.getWardname()%></option> 
+                                                                <% }
 
                                     
 

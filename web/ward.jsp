@@ -185,19 +185,113 @@
                 document.getElementById( 'append' ).appendChild( tr );
                 //return false;
             }
-            
-            function updateDosage(){
+            function updateDosage(vst,treatmentid,id,morning,afternoon,evening){
+               
+                var id = document.getElementById(id).value;
+                var morning = document.getElementById(morning).value;
+                var evening = document.getElementById(evening).value;
+                var afternoon = document.getElementById(afternoon).value;
+                var vidid = document.getElementById(vst).value;
+                var tid = document.getElementById(treatmentid).value;
+                 
+                $.post('action/admissionaction.jsp', { value : "dosagemeter", visitid : vidid, treamentid : tid, id:id , morning : morning,  afternoon : afternoon , evening : evening}, function(data) {
+                    // alert(data);
+                    $('#results').html(data).hide().slideDown('slow');
+                } );
+            }
+            function updateNote(){
+               
+                var visitid = document.getElementById("nid").value;
+                var notes = document.getElementById("adminnotes").value;
+                var doctorsid = document.getElementById("doctorsid").value;
+                //alert(docid);
+                 
+                $.post('action/admissionaction.jsp', { value : "addnotes", visitid : visitid, notes : notes, doctorsid : doctorsid}, function(data) {
+                    alert(data);
+                    $('#results').html(data).hide().slideDown('slow');
+                } );
+            }
+            function updateInvestigation(){
+              
                 
-                alert("did");
+                var visitid = document.getElementById("visitid").value;
+                 
+                var patientid = document.getElementById("patientid").value;
+                var investigationnotes = document.getElementById("investigation_note").value;
+                var selected = new Array();
+                
+                $("input:checkbox[name=labtest]:checked").each(function() {
+                    selected.push($(this).val());
+                });
+                
+                $.post('action/admissionaction.jsp', { value : "investigations", investigation : investigationnotes, patientid : patientid, visitid : visitid, 'select[]' : selected}, function(data) {
+                    alert(data);
+                    $('#results').html(data).hide().slideDown('slow');
+                } );
+                //alert(investigationnotes);
+            }
+            function updateTreatment(){
+                
+                var prescriptionotes = document.getElementById("prescription_notes").value;
+                var visitid = document.getElementById("visitid").value;
+                var patientid = document.getElementById("patientid").value;
+                var selected = new Array();
+
+                $("input:checkbox[name=data]:checked").each(function() {
+                    selected.push($(this).val());
+                });
+                 
+                $.post('action/admissionaction.jsp', { value : "treatments", prescription : prescriptionotes, visitid : visitid, patientid : patientid, 'select[]' : selected}, function(data) {
+                    alert(data);
+                    $('#results').html(data).hide().slideDown('slow');
+                } );
+                //alert(prescriptionotes);
+               
+            }
+            function showTransfer(){
+                var show = document.getElementById("trans");
+                if(show.style.display == "none"){
+                    show.style.display="block";
+                }else{
+                    // show.style.display = "block"
+                    show.style.display="none";             
+                }
+                //showBig();
                 
             }
-        </script>
+            
+            function showBig(){
+                var show = document.getElementById("bigtrans");
+            
+            if(show.style.display == "none"){
+                    show.style.display="block";
+                }else{
+                    // show.style.display = "block"
+                    show.style.display="none";             
+                }
+            }
+           
+            /* attach a submit handler to the form */
+            $("#searchForm").submit(function(event) {
+               
+                /* stop form from submitting normally */
+                event.preventDefault(); 
+        
+                /* get some values from elements on the page: */
+                var $form = $( this ),
+                term = $form.find( 'input[name='+id+']' ).val(),
+                url = $form.attr( 'action' );
 
-        <script>
-            $.("addCheckBoxes").click(function(){
-                return false;
+                /* Send the data using post and put the results in a div */
+                $.post( url, { s: term },
+                function( data ) {
+                    var content = $( data ).find( '#content' );
+                    $( "#result" ).empty().append( content );
+                }
+            );
             });
         </script>
+
     </head>
 
 
@@ -337,299 +431,304 @@
                 <button class="btn btn-info prescription_link bar">Requested Treatments</button>
             </div>
         </div>
-        <form action="action/labnpharmactions.jsp" method="post" id="frm">
-            <div style="display: block;" class="well thumbnail center vital">
-                <ul class="breadcrumb">
-                    <li>
-                        <a style="text-align: center;">Admission History </a>
-                    </li>
+        <!--  <form action="action/labnpharmactions.jsp" method="post" id="frm">-->
+        <div style="display: block;" class="well thumbnail center vital">
+            <ul class="breadcrumb">
+                <li>
+                    <a style="text-align: center;">Admission History </a>
+                </li>
 
-                </ul>
+            </ul>
 
+            <table class="table">
+
+                <thead style="color: black;">
+                    <tr>
+                        <th>
+                            Admission Date 
+                        </th>
+                        <th>
+                            Discharge Date 
+                        </th>
+                        <th>
+                            Diagnosis
+                        </th>
+                        <th>
+                            Medications
+                        </th>
+                        <th>
+                            Investigations
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (int r = 0; r < adminssionHistory.size(); r++) {
+                            Visitationtable vps = (Visitationtable) adminssionHistory.get(r);
+
+                    %>
+                    <tr>
+
+                        <td>
+                            <%=vps.getAdmissiondate()%>
+                        </td>
+
+                        <td>
+                            <%=vps.getDischargedate()%>
+                        </td>
+                        <td>
+                            <%List diagnoses = mgr.patientDiagnosis(vps.getVisitid());
+                                for (int d = 0; d < diagnoses.size(); d++) {
+                                    Patientdiagnosis patientdiagnosis = (Patientdiagnosis) diagnoses.get(d);
+
+                            %>
+                            <%=mgr.getDiagnosis(patientdiagnosis.getDiagnosisid()).getDiagnosis()%>
+                            <%}%>
+                        </td>
+                        <td>
+                            <%List dmonitors = mgr.listDosageMonitor(vps.getVisitid());
+                                for (int t = 0; t < dmonitors.size(); t++) {
+                                    Dosagemonitor dosagemonitor = (Dosagemonitor) dmonitors.get(t);
+
+                            %>
+                            <%=mgr.getTreatment(dosagemonitor.getPatienttreatmentid()).getTreatment()%>
+                            <%}%>
+                        </td>
+                        <td>
+                            <%List pInvestigations = mgr.patientInvestigation(vps.getVisitid());
+                                for (int d = 0; d < pInvestigations.size(); d++) {
+                                    Patientinvestigation pInvestigation = (Patientinvestigation) pInvestigations.get(d);
+
+                            %>
+                            <%=mgr.getInvestigation(pInvestigation.getInvestigationid()).getInvestigation()%>
+                            <%}%>
+                        </td>
+
+                    </tr>
+                    <%}%>
+                </tbody>
+
+            </table>
+
+        </div>
+        <div style="display: none;" class="well thumbnail center diagnosis">
+            <ul class="breadcrumb">
+                <li>
+                    <a style="text-align: center;">Drugs (Medication) and Dosage</a>
+                </li>
+
+            </ul>
+            <form action="action/admissionaction.jsp" method="POST" id="searchForm">
                 <table class="table">
 
                     <thead style="color: black;">
                         <tr>
                             <th>
-                                Admission Date 
+                                Medication
                             </th>
                             <th>
-                                Discharge Date 
+                                Morning
                             </th>
                             <th>
-                                Diagnosis
+                                Afternoon
                             </th>
                             <th>
-                                Medications
+                                Evening
                             </th>
                             <th>
-                                Investigations
+                                Others
                             </th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (int r = 0; r < adminssionHistory.size(); r++) {
-                                Visitationtable vps = (Visitationtable) adminssionHistory.get(r);
+                        <%List dmonitors = mgr.listDosageMonitor(visit.getVisitid());
+                            for (int t = 0; t < dmonitors.size(); t++) {
+                                Dosagemonitor dosagemonitor = (Dosagemonitor) dmonitors.get(t);
 
                         %>
+
                         <tr>
+                            <td> <%=mgr.getTreatment(dosagemonitor.getPatienttreatmentid()).getTreatment()%>
+                            </td>  
+                            <td> 
+                                <%
+                                    if (dosagemonitor.getMorning().equalsIgnoreCase("No")) {%>
+                                <input type="checkbox" id="morning<%=t%>" value="Yes"/>
 
-                            <td>
-                                <%=vps.getAdmissiondate()%>
-                            </td>
-
-                            <td>
-                                <%=vps.getDischargedate()%>
-                            </td>
-                            <td>
-                                <%List diagnoses = mgr.patientDiagnosis(vps.getVisitid());
-                                    for (int d = 0; d < diagnoses.size(); d++) {
-                                        Patientdiagnosis patientdiagnosis = (Patientdiagnosis) diagnoses.get(d);
-
-                                %>
-                                <%=mgr.getDiagnosis(patientdiagnosis.getDiagnosisid()).getDiagnosis()%>
+                                <%  } else {
+                                %><%=dosagemonitor.getMorning()%>
                                 <%}%>
-                            </td>
-                            <td>
-                                <%List dmonitors = mgr.listDosageMonitor(vps.getVisitid());
-                                    for (int t = 0; t < dmonitors.size(); t++) {
-                                        Dosagemonitor dosagemonitor = (Dosagemonitor) dmonitors.get(t);
+                            </td> 
+                            <td> 
+                                <%
+                                    if (dosagemonitor.getAfternoon().equalsIgnoreCase("No")) {%>
+                                <input type="checkbox" id="afternoon<%=t%>" value="Yes"/>
 
-                                %>
-                                <%=mgr.getTreatment(dosagemonitor.getPatienttreatmentid()).getTreatment()%>
+                                <%  } else {
+                                %><%=dosagemonitor.getAfternoon()%>
                                 <%}%>
-                            </td>
-                            <td>
-                                <%List pInvestigations = mgr.patientInvestigation(vps.getVisitid());
-                                    for (int d = 0; d < pInvestigations.size(); d++) {
-                                        Patientinvestigation pInvestigation = (Patientinvestigation) pInvestigations.get(d);
+                            </td> 
+                            <td> 
+                                <%
+                                    if (dosagemonitor.getEvening().equalsIgnoreCase("No")) {%>
+                                <input type="checkbox" id="evening<%=t%>" value="Yes"/>
 
-                                %>
-                                <%=mgr.getInvestigation(pInvestigation.getInvestigationid()).getInvestigation()%>
+                                <%  } else {
+                                %><%=dosagemonitor.getEvening()%>
                                 <%}%>
-                            </td>
+                            </td> 
+                            <td> 
+                                <%
+                                    if (dosagemonitor.getGivenday() == null) {%>
+                                Not Started
 
-                        </tr>
-                        <%}%>
+                                <%  } else {
+                                %><%=dosagemonitor.getGivenday()%>
+                                <%}%>
+                            </td> 
+                    <input type="hidden" id="vs<%=dosagemonitor.getId()%>" value="<%=dosagemonitor.getVisitid()%>"/>
+                    <input type="hidden" id="pt<%=dosagemonitor.getId()%>" value="<%=dosagemonitor.getPatienttreatmentid()%>"/>
+                    <input type="hidden" id="id<%=dosagemonitor.getId()%>" value="<%=dosagemonitor.getId()%>"/>
+                    <td><!--<input type="submit" onclick='updateDosage("id<%=dosagemonitor.getId()%>","morning<%=t%>","afternoon<%=t%>","evening<%=t%>");return false;'--</td>-->
+                        <button class="btn btn-info span2" onclick='updateDosage("vs<%=dosagemonitor.getId()%>","pt<%=dosagemonitor.getId()%>" ,"id<%=dosagemonitor.getId()%>","morning<%=t%>","afternoon<%=t%>","evening<%=t%>");return false;'>
+                            <i class="icon-white icon-pencil"> </i>   Update
+                        </button></td>
+                    </tr>
+                    <tr><td><div id="result"/></td></tr>
+                    <%}%> 
+
+
                     </tbody>
-
                 </table>
+            </form>
+            <br/>
 
-            </div>
-            <div style="display: none;" class="well thumbnail center diagnosis">
-                <ul class="breadcrumb">
-                    <li>
-                        <a style="text-align: center;">Drugs (Medication) and Dosage</a>
-                    </li>
+        </div>
+        <div style="display: none;" class="well thumbnail center history">
+            <ul class="breadcrumb">
+                <li>
+                    <a style="text-align: center;">History</a>
+                </li>
+            </ul>
+            <table class="">
+                <thead>
+                    <tr>
+                        <td>
+                            Visit Date
+                        </td>
+                        <td>
+                            Diagnosis
 
-                </ul>
-                <form action="action/wardaction.jsp" method="POST">
-                    <table class="table">
+                        </td>
+                        <td>
+                            Investigation
 
-                        <thead style="color: black;">
-                            <tr>
-                                <th>
-                                    Medication
-                                </th>
-                                <th>
-                                    Morning
-                                </th>
-                                <th>
-                                    Afternoon
-                                </th>
-                                <th>
-                                    Evening
-                                </th>
-                                <th>
-                                    Others
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%List dmonitors = mgr.listDosageMonitor(visit.getVisitid());
-                                for (int t = 0; t < dmonitors.size(); t++) {
-                                    Dosagemonitor dosagemonitor = (Dosagemonitor) dmonitors.get(t);
+                        </td>
+                        <td>
 
+                            Treatment
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% for (int r = 0; r < patientHistory.size(); r++) {
+                            Visitationtable vps = (Visitationtable) patientHistory.get(r);
+                            List pdiagnosis = mgr.patientDiagnosis(vps.getVisitid());
+                            List pInvestigation = mgr.patientInvestigation(vps.getVisitid());
+                            List pTreatment = mgr.patientTreatment(vps.getVisitid());
+                    %>
+                    <tr>
+
+                        <td>
+                            <%=vps.getDate()%>
+                        </td>
+
+                        <td>
+                            <% for (int s = 0; s < pdiagnosis.size(); s++) {
+                                    Patientdiagnosis pd = (Patientdiagnosis) pdiagnosis.get(s);
+                                    if (pd != null) {
                             %>
+                            <h5><%= mgr.getId(pd.getDiagnosisid()).getDiagnosis()%></h5> 
+                            <%}
+                                }%>
+                        </td>
+                        <td>
+                            <% for (int s = 0; s < pInvestigation.size(); s++) {
+                                    Patientinvestigation pi = (Patientinvestigation) pInvestigation.get(s);
+                                    if (pi != null) {
+                            %>
+                            <h5><%= mgr.getInvestigation(pi.getInvestigationid()).getInvestigation()%></h5> 
+                            <% }
+                                }%>
+                        </td>
+                        <td>
+                            <% for (int s = 0; s < pTreatment.size(); s++) {
+                                    Patienttreatment pt = (Patienttreatment) pTreatment.get(s);
+                                    if (pt != null) {
+                            %>
+                            <h5><%= mgr.getTreatment(pt.getTreatmentid()).getTreatment()%></h5> 
+                            <% }
+                                }%>
+                        </td>
 
-                            <tr>
-                                <td> <%=mgr.getTreatment(dosagemonitor.getPatienttreatmentid()).getTreatment()%>
-                                </td>  
-                                <td> 
-                                    <%
-                                        if (dosagemonitor.getMorning().equalsIgnoreCase("No")) {%>
-                                    <input type="checkbox" id="morning<%=t%>" value="<%=dosagemonitor.getId()%>"/>
+                    </tr>
+                    <%}%>
 
-                                    <%  } else {
-                                    %><%=dosagemonitor.getMorning()%>
-                                    <%}%>
-                                </td> 
-                                <td> 
-                                    <%
-                                        if (dosagemonitor.getAfternoon().equalsIgnoreCase("No")) {%>
-                                    <input type="checkbox" id="afternoon<%=t%>" value="<%=dosagemonitor.getId()%>"/>
+                </tbody>
 
-                                    <%  } else {
-                                    %><%=dosagemonitor.getAfternoon()%>
-                                    <%}%>
-                                </td> 
-                                <td> 
-                                    <%
-                                        if (dosagemonitor.getEvening().equalsIgnoreCase("No")) {%>
-                                    <input type="checkbox" id="evening<%=t%>" value="<%=dosagemonitor.getId()%>"/>
+            </table>
 
-                                    <%  } else {
-                                    %><%=dosagemonitor.getEvening()%>
-                                    <%}%>
-                                </td> 
-                                <td> 
-                                    <%
-                                        if (dosagemonitor.getGivenday() == null) {%>
-                                    Not Started
+        </div>
+        <div style="display: none;" class="well thumbnail center prescription">
+            <ul class="breadcrumb">
+                <li>
+                    <a>Requested Treatments</a>
+                </li>
 
-                                    <%  } else {
-                                    %><%=dosagemonitor.getGivenday()%>
-                                    <%}%>
-                                </td> 
-                        <input type="hidden" id="<%=dosagemonitor.getId()%>" value="<%=dosagemonitor.getId()%>"/>
-                        <td><input type="submit" name="updosage" value="update" onlick = "updateDosage()"/></td>
+            </ul>
+            <table cellpadding="0" cellspacing="0" border="0" class=" example table">
 
-                        </tr>
-                        <%}%> 
+                <thead>
+                    <tr>
+                        <th>
+                            <label class="span3"> Item </label>
+                        </th>
+                        <th>
+                            <label class="span2"> Quantity </label>
+                        </th>
+                        <th>
+                            <label class="span2"> Cost (unit cost * quantity) </label>
+                        </th>
 
+                    </tr>
+                </thead>
+                <tbody>
+                    <% List ptreatments = mgr.patientTreatment(visit.getVisitid());
+                        for (int var = 0; var < ptreatments.size(); var++) {
+                            Patienttreatment patienttreatment = (Patienttreatment) ptreatments.get(var);
+                    %>
+                    <tr>
+                        <td>
+                            <%=mgr.getTreatment(patienttreatment.getTreatmentid()).getTreatment()%> 
+                        </td>
+                        <td>
 
-                        </tbody>
-                    </table>
-                </form>
-                <br/>
+                            <%=patienttreatment.getQuantity()%> 
 
-            </div>
-            <div style="display: none;" class="well thumbnail center history">
-                <ul class="breadcrumb">
-                    <li>
-                        <a style="text-align: center;">History</a>
-                    </li>
-                </ul>
-                <table class="">
-                    <thead>
-                        <tr>
-                            <td>
-                                Visit Date
-                            </td>
-                            <td>
-                                Diagnosis
+                        </td>
+                        <td>
 
-                            </td>
-                            <td>
-                                Investigation
+                            <%= (patienttreatment.getQuantity() * patienttreatment.getPrice())%> 
 
-                            </td>
-                            <td>
+                        </td>
+                    </tr>
+                    <%}%>
+                </tbody>
 
-                                Treatment
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <% for (int r = 0; r < patientHistory.size(); r++) {
-                                Visitationtable vps = (Visitationtable) patientHistory.get(r);
-                                List pdiagnosis = mgr.patientDiagnosis(vps.getVisitid());
-                                List pInvestigation = mgr.patientInvestigation(vps.getVisitid());
-                                List pTreatment = mgr.patientTreatment(vps.getVisitid());
-                        %>
-                        <tr>
-
-                            <td>
-                                <%=vps.getDate()%>
-                            </td>
-
-                            <td>
-                                <% for (int s = 0; s < pdiagnosis.size(); s++) {
-                                        Patientdiagnosis pd = (Patientdiagnosis) pdiagnosis.get(s);
-                                        if (pd != null) {
-                                %>
-                                <h5><%= mgr.getId(pd.getDiagnosisid()).getDiagnosis()%></h5> 
-                                <%}
-                                    }%>
-                            </td>
-                            <td>
-                                <% for (int s = 0; s < pInvestigation.size(); s++) {
-                                        Patientinvestigation pi = (Patientinvestigation) pInvestigation.get(s);
-                                        if (pi != null) {
-                                %>
-                                <h5><%= mgr.getInvestigation(pi.getInvestigationid()).getInvestigation()%></h5> 
-                                <% }
-                                    }%>
-                            </td>
-                            <td>
-                                <% for (int s = 0; s < pTreatment.size(); s++) {
-                                        Patienttreatment pt = (Patienttreatment) pTreatment.get(s);
-                                        if (pt != null) {
-                                %>
-                                <h5><%= mgr.getTreatment(pt.getTreatmentid()).getTreatment()%></h5> 
-                                <% }
-                                    }%>
-                            </td>
-
-                        </tr>
-                        <%}%>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-            <div style="display: none;" class="well thumbnail center prescription">
-                <ul class="breadcrumb">
-                    <li>
-                        <a>Requested Treatments</a>
-                    </li>
-
-                </ul>
-                <table cellpadding="0" cellspacing="0" border="0" class=" example table">
-
-                    <thead>
-                        <tr>
-                            <th>
-                                <label class="span3"> Item </label>
-                            </th>
-                            <th>
-                                <label class="span2"> Quantity </label>
-                            </th>
-                            <th>
-                                <label class="span2"> Cost (unit cost * quantity) </label>
-                            </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% List ptreatments = mgr.patientTreatment(visit.getVisitid());
-                            for (int var = 0; var < ptreatments.size(); var++) {
-                                Patienttreatment patienttreatment = (Patienttreatment) ptreatments.get(var);
-                        %>
-                        <tr>
-                            <td>
-                                <%=mgr.getTreatment(patienttreatment.getTreatmentid()).getTreatment()%> 
-                            </td>
-                            <td>
-
-                                <%=patienttreatment.getQuantity()%> 
-
-                            </td>
-                            <td>
-
-                                <%= (patienttreatment.getQuantity() * patienttreatment.getPrice())%> 
-
-                            </td>
-                        </tr>
-                        <%}%>
-                    </tbody>
-
-                </table>
-                <div id="treat">
-
+            </table>
+            <div id="treat">
+                <form action="action/admissionaction.jsp" method="POST" id="treatform">
                     <table> 
 
                         <thead>
@@ -790,21 +889,28 @@
                     <b> <u> Prescription Note </u> </b> <br />  <br />
 
 
-                    <textarea style="width: 95%"  name="prescription_notes" ></textarea>
+                    <textarea style="width: 95%"  id ="prescription_notes" name="prescription_notes" ></textarea>
+                    <br/>
+                    <input type="hidden" id="visitid" name="visitid" value="<%=visit.getVisitid()%>"/>
+                    <input type="hidden" id="patientid" name="patientid" value="<%=visit.getPatientid()%>"/>
 
+                    <button id="" class="btn btn-info span2" onclick='updateTreatment();return false;'>
+                        <i class="icon-white icon-pencil"> </i>   Add to Drugs
+                    </button> 
+                </form>
 
-                </div>
             </div>
-            <div style="display: none;" class="well thumbnail center laboratory">
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="#" onclick="showdInvestigation()">Patient Investigations</a>
-                    </li>
+        </div>
+        <div style="display: none;" class="well thumbnail center laboratory">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#" onclick="showdInvestigation()">Patient Investigations</a>
+                </li>
 
-                </ul>
+            </ul>
 
-                <div class="center" id="lab">
-
+            <div class="center" id="lab">
+                <form action="action/admissionaction.jsp" id="docnote" method="POST" id="note">
                     <table cellpadding="0" cellspacing="0" border="0" class=" example table">
 
                         <thead>
@@ -829,7 +935,7 @@
                                 </td>
                                 <td>
                                     <%if (patientinvestigation.getResult().isEmpty()) {%>
-                                    Pending
+                                    <label style="color: red">Pending</label>
                                     <%} else {%>
                                     <%=patientinvestigation.getResult()%> 
                                     <%}%>
@@ -884,70 +990,93 @@
                     </div>
                     <br />
                     Investigation Note <br />  <br />
-                    <textarea style="width: 95%" name="investigation_note"></textarea> 
+                    <textarea style="width: 95%" id ="investigation_note" name="investigation_note"></textarea> 
+                    <input type="hidden" id="visitid" name="visitid" value="<%=visit.getVisitid()%>"/>
+                    <input type="hidden" id="patientid" name="patientid" value="<%=visit.getPatientid()%>"/>
+                    <button class="btn btn-info span2" onclick='updateInvestigation();return false;'>
+                        <i class="icon-white icon-pencil"> </i>   Make Request
+                    </button>
+                </form>
+            </div>
+
+        </div>
+        <div style="display: none;" class="well thumbnail center results">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#" onclick="showdInvestigation()">Doctor's Notes</a>
+                </li>
+
+            </ul>
+            <table cellpadding="0" cellspacing="0" border="0" class="display example table">
+
+                <thead>
+                    <tr>
+                        <th class="span3">Date</th>
+                        <th class="span3">Note</th>
+                        <th class="span3">Doctor</th>
+                    </tr>
+                <tbody>
+                    <% List notes = mgr.listPatientAdmissionNote(visit.getVisitid());
+
+
+                        for (int nt = 0; nt < notes.size(); nt++) {
+                            Admissionnotes admissionnotes = (Admissionnotes) notes.get(nt);
+                    %>
+                    <tr>
+                        <td><%=admissionnotes.getDate()%></td>
+                        <td><%=admissionnotes.getNote()%></td>
+                        <td><%=admissionnotes.getDoctorsid()%></td>
+                    </tr>
+                    <%}%>
+                </tbody>
+                </thead>
+
+            </table>
+            Add Notes
+
+            <form action="action/admissionaction.jsp" id="docnote" method="POST" id="note">
+                <input type="hidden" id="nid" name="visitid" value="<%=visit.getVisitid()%>"/>
+                <input type="hidden" id="doctorsid" name="doctorsid" value=""/>
+                <textarea id="adminnotes" name="admissionnote"></textarea><br/>
+                <button class="btn btn-info span2" onclick='updateNote();return false;'>
+                    <i class="icon-white icon-pencil"> </i>   Add Notes
+                </button>
+            </form>
+        </div>
+
+        <div class="form-actions center" >
+            <!--<select name="unitid">
+                <%
+                    List units = mgr.listUnits();
+                    for (int j = 0; j < units.size(); j++) {
+                        Units unit = (Units) units.get(j);
+                %>
+                <option value="<%=unit.getUnitname()%>"><%=unit.getUnitname()%></option> 
+                <% }
+
+
+                %>
+            </select>-->
+            <input type="hidden" name="patientid" value="<%=visit.getPatientid()%>"/>
+            <input type="hidden" name="id" value="<%=visit.getVisitid()%>"/> 
+            <br />
+            <form action="action/admissionaction.jsp" method="POST" id="frmid">
+                <input type="hidden"  name="visitid" value="<%=visit.getVisitid()%>"/>
+                <input type="hidden"  name="patientid" value="<%=visit.getPatientid()%>"/>
+                Discharge: <input type="radio" name="patientstatus" value="Discharge" onclick="showBig()"/> Dead: <input type="radio" name="patientstatus" value="Dead" onclick="showBig()"/> Transfer: <input type="radio" name="patientstatus" value="Transfer" onclick="showBig();showTransfer()"/>
+                <div id="bigtrans" style="display: none">
+                    <div id="trans" style="display: none">
+                    Transferred to: <input type="text" name="location"/><br/>
+                Transfer Notes:<br/>
+                <textarea name="notes"></textarea>
                 </div>
-
-            </div>
-            <div style="display: none;" class="well thumbnail center results">
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="#" onclick="showdInvestigation()">Doctor's Notes</a>
-                    </li>
-
-                </ul>
-                <table cellpadding="0" cellspacing="0" border="0" class="display example table">
-
-                    <thead>
-                        <tr>
-                            <th class="span3">Date</th>
-                            <th class="span3">Note</th>
-                            <th class="span3">Doctor</th>
-                        </tr>
-                    <tbody>
-                        <% List notes = mgr.listPatientAdmissionNote(visit.getVisitid());
-
-
-                            for (int nt = 0; nt < notes.size(); nt++) {
-                                Admissionnotes admissionnotes = (Admissionnotes) notes.get(nt);
-                        %>
-                        <tr>
-                            <td><%=admissionnotes.getDate()%></td>
-                            <td><%=admissionnotes.getNote()%></td>
-                            <td><%=admissionnotes.getDoctorsid()%></td>
-                        </tr>
-                        <%}%>
-                    </tbody>
-                    </thead>
-
-                </table>
-                Add Notes
-                <textarea name="admissionnote"></textarea>
-            </div>
-
-            <div class="form-actions center" >
-                <select name="unitid">
-                    <%
-                        List units = mgr.listUnits();
-                        for (int j = 0; j < units.size(); j++) {
-                            Units unit = (Units) units.get(j);
-                    %>
-                    <option value="<%=unit.getUnitname()%>"><%=unit.getUnitname()%></option> 
-                    <% }
-
-
-                    %>
-                </select>
-                <input type="hidden" name="patientid" value="<%=visit.getPatientid()%>"/>
-                <input type="hidden" name="id" value="<%=visit.getVisitid()%>"/> 
-                <br />
-
-                <button type="submit" name="action" value="Forward" class="btn btn-danger btn-large">
-
+                <br/><button type="submit" name="action" value="forward" class="btn btn-danger btn-large">
                     <i class="icon-white icon-arrow-right"> </i> Forward
                 </button>
-
-            </div>
-        </form>
+                </div>
+            </form>
+        </div>
+        <!-- </form>-->
 
     </div>
     <div class="clear"></div>
@@ -958,7 +1087,4 @@
     %>
 
 </body>
-
-
-
 </html>

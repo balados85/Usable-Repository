@@ -12,7 +12,7 @@
               
            
             String patientid = request.getParameter("patient") == null ? "" : request.getParameter("patient");
-            String unitName = request.getParameter("unitid") == null ? "Records" : request.getParameter("unitid");
+            String unitName = request.getParameter("unitid") == null ? "Pharmacy" : request.getParameter("unitid");
             String visit = request.getParameter("visitid");
             int visitid = - 1;
             try {
@@ -24,10 +24,10 @@
             }
             
 
-            if (patientid != null ) {
+                if (patientid != null ) {
                // System.out.println(patientid);
-               mgr.updateFolderLocation(mgr.getPatientFolder(patientid).getStatus(),unitName, patientid);
-                mgr.updateVisitationStatus(visitid, unitName,mgr.getPatientFolder(patientid).getStatus());
+               mgr.updateFolderLocation(mgr.getPatientFolder(patientid).getStatus(),"Pharmacy", patientid);
+                mgr.updateVisitationStatus(visitid, "Pharmacy",mgr.getPatientFolder(patientid).getStatus());
                
                 
                 session.setAttribute("lasterror", "Successfully forwarded");
@@ -49,4 +49,3 @@
                 throw new ServletException(ex);
             }
         }%>
-

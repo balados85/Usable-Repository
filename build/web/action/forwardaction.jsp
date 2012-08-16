@@ -28,6 +28,7 @@
                 return;
             }
             visit.setPatientid(patientid);
+            visit.setPatientstatus("Out Patient");
             session.setAttribute("visit", visit);
             sess.save(visit);
            
@@ -41,6 +42,7 @@
             String unitName = request.getParameter("unitid") == null ? "Pharmacy" : request.getParameter("unitid");
             String[] ptid = request.getParameterValues("dispensed[]") == null ? null : request.getParameterValues("dispensed[]");
             String patientid = request.getParameter("patient") == null ? "" : request.getParameter("patient");
+            //String unit = request.getParameter("unitid") == null ? "Pharmacy" : request.getParameter("unitid");
             String visit = request.getParameter("visitid");
             int visitid = - 1;
             try {

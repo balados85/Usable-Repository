@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2012 2:01:55 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Clerkinganswer" table="clerkinganswer" catalog="extended">
+        <id name="answerid" type="java.lang.Integer">
+            <column name="answerid" />
+            <generator class="identity" />
+        </id>
+        <property name="answer" type="string">
+            <column name="answer" length="250" not-null="true" />
+        </property>
+        <property name="questionid" type="int">
+            <column name="questionid" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

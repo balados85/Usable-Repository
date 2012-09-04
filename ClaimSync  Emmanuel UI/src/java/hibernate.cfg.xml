@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/extended</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="entities/Sponsorship.hbm.xml"/>
+    <mapping resource="entities/Patient.hbm.xml"/>
+    <mapping resource="entities/Sponsorhipdetails.hbm.xml"/>
+    <mapping resource="entities/Folder.hbm.xml"/>
+    <mapping resource="entities/Visitationtable.hbm.xml"/>
+    <mapping resource="entities/Units.hbm.xml"/>
+    <mapping resource="entities/Consultingrooms.hbm.xml"/>
+    <mapping resource="entities/Investigation.hbm.xml"/>
+    <mapping resource="entities/Treatment.hbm.xml"/>
+    <mapping resource="entities/Diagnosis.hbm.xml"/>
+    <mapping resource="entities/Patientdiagnosis.hbm.xml"/>
+    <mapping resource="entities/Patientinvestigation.hbm.xml"/>
+    <mapping resource="entities/Patienttreatment.hbm.xml"/>
+    <mapping resource="entities/Nhistreatment.hbm.xml"/>
+    <mapping resource="entities/Nhisinvestigation.hbm.xml"/>
+    <mapping resource="entities/Receive.hbm.xml"/>
+    <mapping resource="entities/Appoint.hbm.xml"/>
+    <mapping resource="entities/Itemtype.hbm.xml"/>
+    <mapping resource="entities/ItemsTable.hbm.xml"/>
+    <mapping resource="entities/Drugtype.hbm.xml"/>
+    <mapping resource="entities/Post.hbm.xml"/>
+    <mapping resource="entities/Symptoms.hbm.xml"/>
+    <mapping resource="entities/Ward.hbm.xml"/>
+    <mapping resource="entities/Dosagemonitor.hbm.xml"/>
+    <mapping resource="entities/Newborn.hbm.xml"/>
+    <mapping resource="entities/Admissionnotes.hbm.xml"/>
+    <mapping resource="entities/Wardnote.hbm.xml"/>
+    <mapping resource="entities/Transferlocation.hbm.xml"/>
+    <mapping resource="entities/Roletable.hbm.xml"/>
+    <mapping resource="entities/Qualification.hbm.xml"/>
+    <mapping resource="entities/Stafftable.hbm.xml"/>
+    <mapping resource="entities/Consultation.hbm.xml"/>
+    <mapping resource="entities/Laborders.hbm.xml"/>
+    <mapping resource="entities/Clerkinganswer.hbm.xml"/>
+    <mapping resource="entities/Clerkingquestion.hbm.xml"/>
+    <mapping resource="entities/Patientclerking.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

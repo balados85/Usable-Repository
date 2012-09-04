@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2012 2:01:55 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Transferlocation" table="transferlocation" catalog="extended">
+        <id name="transferid" type="java.lang.Integer">
+            <column name="transferid" />
+            <generator class="identity" />
+        </id>
+        <property name="visitid" type="int">
+            <column name="visitid" not-null="true" />
+        </property>
+        <property name="visitdate" type="date">
+            <column name="visitdate" length="10" not-null="true" />
+        </property>
+        <property name="location" type="string">
+            <column name="location" not-null="true" />
+        </property>
+        <property name="doctorid" type="string">
+            <column name="doctorid" not-null="true" />
+        </property>
+        <property name="diagnosisid" type="int">
+            <column name="diagnosisid" not-null="true" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

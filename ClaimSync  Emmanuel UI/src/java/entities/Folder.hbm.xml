@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2012 2:01:55 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Folder" table="folder" catalog="extended">
+        <id name="foldernumber" type="string">
+            <column name="foldernumber" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="shelvenumber" type="string">
+            <column name="shelvenumber" length="100" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="100" />
+        </property>
+        <property name="previouslocation" type="string">
+            <column name="previouslocation" />
+        </property>
+    </class>
+</hibernate-mapping>

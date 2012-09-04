@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2012 2:01:55 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entities.Sponsorship" table="sponsorship" catalog="extended">
+        <id name="sponshorshipid" type="java.lang.Integer">
+            <column name="sponshorshipid" />
+            <generator class="identity" />
+        </id>
+        <property name="sponsorname" type="string">
+            <column name="sponsorname" length="150" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="150" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="150" />
+        </property>
+        <property name="contact" type="string">
+            <column name="contact" length="10" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

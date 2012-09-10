@@ -147,16 +147,16 @@
                 <!-- Headings & Paragraph Copy -->
 
 
-                
-                    <%if (session.getAttribute("lasterror") != null) {%>
-                    
-                    <div class="alert alert-danger">
+
+                <%if (session.getAttribute("lasterror") != null) {%>
+
+                <div class="alert alert-danger">
                     <%=session.getAttribute("lasterror")%> 
-                     </div>
-                    <%
-                            session.removeAttribute("lasterror");
-                        }%>
-               
+                </div>
+                <%
+                        session.removeAttribute("lasterror");
+                    }%>
+
 
 
                 <div class="row">
@@ -223,7 +223,7 @@
 
         <div style="max-height: 600px; display: none" id="dialog" title="New Regitration">
 
-            <form enctype="multipart/data"action="action/registrationaction.jsp" method="POST" class="form-horizontal well">
+            <form id="registration" enctype="multipart/data"action="action/registrationaction.jsp" method="POST" class="form-horizontal well">
                 <fieldset>
                     <div style="float: left;" class="pre_first_half">
                         <div class="control-group">
@@ -233,39 +233,31 @@
                                     String y = yr.substring(2);
                                 %>
                                 <input type="text" name="patientid" readonly="readonly" id="input01" value="<%=(y + "DC" + (mgr.listPatients().size() + 1))%>"/>
-                                <p class="help-inline">
 
-                                </p>
                             </div>
                         </div>
 
 
                         <div class="control-group">
-                            <label class="control-label" for="input01">First Name</label>
+                            <label class="control-label" for="fname">First Name</label>
                             <div class="controls">
-                                <input  type="text" name="fname"  id="input01"/>
-                                <p class="help-inline">
+                                <input  type="text" name="fname"  id="fname"/>
 
-                                </p>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="input01">Last Name</label>
+                            <label class="control-label" for="lname">Last Name</label>
                             <div class="controls">
-                                <input type="text" name="lname"  id="input01"/>
-                                <p class="help-inline">
+                                <input type="text" name="lname"  id="lname"/>
 
-                                </p>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="input01">Other Names</label>
+                            <label class="control-label" for="midname">Other Names</label>
                             <div class="controls">
-                                <input type="text" name="midname"  id="input01"/>
-                                <p class="help-inline">
+                                <input type="text" name="midname"  id="midname"/>
 
-                                </p>
                             </div>
                         </div>
                         <div class="control-group">
@@ -275,16 +267,14 @@
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
-                                <p class="help-inline">
 
-                                </p>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="inputError">Date of Birth</label>
+                            <label class="control-label" for="dateofbirth">Date of Birth</label>
                             <div class="controls">
-                                <select class="input-mini"  name="day">
+                                <select class="input-mini dob"  name="day" >
                                     <option>D</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -319,7 +309,7 @@
                                     <option value="31">31</option>
                                 </select>
 
-                                <select class="input-mini" name="month">
+                                <select class="input-mini dob" name="month">
                                     <option>M</option>
                                     <option value="01">Jan</option>
                                     <option value="02">Feb</option>
@@ -337,7 +327,7 @@
 
 
 
-                                <select class="input-small"  name="year">
+                                <select class="input-small dob"  name="year">
                                     <option>Y</option>
                                     <option value="2004">2004</option>
                                     <option value="2003">2003</option>
@@ -450,23 +440,21 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="input01">Marital Status</label>
+                            <label class="control-label" for="maritalstatus">Marital Status</label>
                             <div class="controls">
-                                <select name="maritalstatus" id="select01">
+                                <select name="maritalstatus" id="martialstatus">
                                     <option>Married</option>
                                     <option>Single</option>
                                     <option>Divorced</option>
                                 </select>
-                                <p class="help-inline">
 
-                                </p>
                             </div>
                         </div>
 
                         <div class="control-group">
                             <label class="control-label" for="input01">Country</label>
                             <div class="controls">
-                                <select name="country" id="select01">
+                                <select name="country" id="country">
                                     <option>Ghana</option>
                                     <option>Togo</option>
                                     <option>Benin</option>
@@ -479,8 +467,8 @@
                         <div class="control-group">
                             <label class="control-label" for="city">City</label>
                             <div class="controls">
-                                <input type="text" name="city" id="inputSuccess"/>
-                                <span class="help-inline"></span>
+                                <input type="text" name="city" id="city"/>
+
                             </div>
                         </div>
 
@@ -488,46 +476,46 @@
                     <div  style="float: left;" class="second">            
 
                         <div class="control-group">
-                            <label class="control-label" for="inputSuccess">Address</label>
+                            <label class="control-label" for="address">Address</label>
                             <div class="controls">
-                                <textarea type="text" name="address" id="inputSuccess"></textarea>
-                                <span class="help-inline"></span>
+                                <textarea type="text" name="address" id="address"></textarea>
+
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="inputSuccess">Telephone No.</label>
+                            <label class="control-label" for="contact">Telephone No.</label>
                             <div class="controls">
-                                <input type="text" name="contact" id="inputSuccess"/>
-                                <span class="help-inline"></span>
+                                <input type="text" name="contact" id="contact"/>
+
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputSuccess">Emergency Person.</label>
+                            <label class="control-label" for="emergencyperson">Emergency Person.</label>
                             <div class="controls">
                                 <input type="text" name="emergencyperson" id="inputSuccess"/>
-                                <span class="help-inline"></span>
+
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputSuccess">Emergency Tel. No.</label>
+                            <label class="control-label" for="emergencycontact">Emergency Tel. No.</label>
                             <div class="controls">
                                 <input type="text" name="emergencycontact" id="inputSuccess"/>
-                                <span class="help-inline"></span>
+
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputSuccess">Email</label>
+                            <label class="control-label" for="email">Email</label>
                             <div class="controls">
                                 <input type="text" name="email" id="inputSuccess"/>
-                                <span class="help-inline"></span>
+
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputSuccess">Employer</label>
+                            <label class="control-label" for="employer">Employer</label>
                             <div class="controls">
                                 <input type="text" name="employer" id="inputSuccess"/>
-                                <span class="help-inline"></span>
+
                             </div>
                         </div>
                         <!-- <div class="control-group">
@@ -540,7 +528,7 @@
 
 
                         <div class="control-group">
-                            <label class="control-label" for="selectError">Sponsorship Method</label>
+                            <label class="control-label" for="type">Sponsorship Method</label>
                             <div class="controls">
                                 <select id="payment" name="type">
                                     <option >Select</option>
@@ -549,7 +537,7 @@
                                     <option id="private"value="Private" onclick="showMembershipbox()">Private Health Insurance</option>
                                     <option id="corporate" value="Cooperate" onclick="showCorporate()">Cooperate</option>
                                 </select>
-                                <span class="help-inline"></span>
+
                             </div>
                         </div>
 
@@ -574,7 +562,6 @@
 
                                     </select>
 
-                                    <span class="help-inline"></span>
                                 </div>
                             </div>
 
@@ -582,7 +569,7 @@
                                 <label class="control-label" >Corporate ID</label>
                                 <div class="controls">
                                     <input type="text" id="inputSuccess" name="coperateid" for="inputSuccess" value=""/>
-                                    <span class="help-inline"></span>
+
                                 </div>
                             </div>
                         </div>
@@ -604,7 +591,7 @@
                                         %>
 
                                     </select>
-                                    <span class="help-inline"></span>
+
                                 </div>
                             </div>
 
@@ -612,7 +599,7 @@
                                 <label class="control-label" >Membership ID</label>
                                 <div class="controls">
                                     <input type="text" id="inputSuccess"name="membershipid" for="inputSuccess" value=""/>
-                                    <span class="help-inline"></span>
+
                                 </div>
                             </div>
 
@@ -620,7 +607,7 @@
                                 <label class="control-label" >Benefit Plan</label>
                                 <div class="controls">
                                     <input type="text" id="inputSuccess" name="benefitplan" for="inputSuccess" value=""/>
-                                    <span class="help-inline"></span>
+
                                 </div>
                             </div>
                         </div>
@@ -629,7 +616,7 @@
                                 <label class="control-label" >Membership ID</label>
                                 <div class="controls">
                                     <input type="text" id="inputSuccess"name="nhismembershipid" for="inputSuccess" value=""/>
-                                    <span class="help-inline"></span>
+
                                 </div>
                             </div>
                         </div>
@@ -708,6 +695,7 @@
     <script src="js/bootstrap-tooltip.js"></script>
     <script src="js/bootstrap-popover.js"></script>
     <script src="js/application.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
 
     <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 
@@ -785,6 +773,72 @@
                     $(this).next().stop(true, true).slideUp('normal');
                 }
             });
+            
+            
+            $('#registration').validate({
+                rules: {
+                    fname: {
+                        minlength: 2,
+                        required: true
+                    },
+                    lname: {
+                        minlength: 2,
+                        required: true
+                    },
+                    midname: {
+                        minlength: 2,
+                        required: false
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    gender: {
+                        required: true   
+                    },
+                    
+                    email: {
+                        required: false,
+                        email: true
+                    },
+                    type: {
+                        required: true
+                        
+                    },
+                    contact: {
+                        required: true
+                        
+                    },
+                    address: {
+                        required: true
+                        
+                    },
+                    emergencycontact: {
+                        minlength: 2,
+                        required: true
+                    },
+                    emergencyperson: {
+                        minlength: 2,
+                        required: true
+                    }
+                },
+                highlight: function(label) {
+                    $(label).closest('.control-group').addClass('error');
+                },
+                success: function(label) {
+                    label
+                    .text('OK!').addClass('valid')
+                    .closest('.control-group').addClass('success');
+                }
+            });Ï
+            
+            
+            $(".dob").rules("add", { 
+                required:true
+            });
+
+            
+            
 
         });
             
@@ -801,7 +855,7 @@
                        
                    }
         
-         function showCorporate(){
+        function showCorporate(){
                            var show = document.getElementById("privateid");
                            var shows = document.getElementById("nhis");
                           

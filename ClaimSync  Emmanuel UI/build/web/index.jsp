@@ -629,21 +629,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="control-group">
+               <!--         <div class="control-group">
                             <label class="control-label" >Consultation Type</label>
                             <div class="controls">
                                 <select name="contype">
                                     <option value="0">Select</option>
-                                    <%
+                                    <%--
                                         List types = mgr.listConsultation();
                                         for (int j = 0; j < types.size(); j++) {
                                             Consultation unit = (Consultation) types.get(j);
-                                    %>
-                                    <option value="<%=unit.getConid()%>"><%=unit.getContype()%></option> 
-                                    <% }%>
+                                    --%>
+                                    <option value="<-%=unit.getConid()%>"><-%=unit.getContype()%></option> 
+                                    <-% }%>
                                 </select></div>
                         </div>
-
+               --->
                     </div>
                 </fieldset>
                 <div style="text-align: center;">

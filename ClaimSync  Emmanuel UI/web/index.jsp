@@ -639,8 +639,8 @@
                                         for (int j = 0; j < types.size(); j++) {
                                             Consultation unit = (Consultation) types.get(j);
                                     --%>
-                                    <option value="<%=unit.getConid()%>"><%=unit.getContype()%></option> 
-                                    <% }%>
+                                    <option value="<-%=unit.getConid()%>"><-%=unit.getContype()%></option> 
+                                    <-% }%>
                                 </select></div>
                         </div>
                --->

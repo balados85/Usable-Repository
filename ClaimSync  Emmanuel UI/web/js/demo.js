@@ -3,6 +3,7 @@ $(function() {
     $('#dialog').dialog({
         autoOpen : false,
         width : 900,
+        height: '90%', 
         modal : true,
         position : "top"
 
@@ -12,6 +13,22 @@ $(function() {
 
     $('.dialog_link').click(function() {
         $('#dialog').dialog('open');
+        return false;
+    });
+    
+    
+    $('#registration_dialog').dialog({
+        autoOpen : false,
+        width : "100%",
+        modal : true
+       
+
+    });
+    
+    
+
+    $('.registration_dialog_link').click(function() {
+        $('#registration_dialog').dialog('open');
         return false;
     });
 

@@ -179,9 +179,11 @@
                             <br />
 
                             <a href="#">
-                                <div class="span3  center  well large_button dialog_link">
+                                <div class="span3  center  well large_button registration_dialog_link">
                                     New Registration
-                                </div> </a>
+                                </div> 
+                            </a>
+
                             <a href="#">
                                 <div class="dialog_link2 span3 offset1 center  well large_button">
                                     Find Patient
@@ -221,7 +223,7 @@
 
         </div><!-- /container -->
 
-        <div style="max-height: 600px; display: none" id="dialog" title="New Regitration">
+        <div style="max-height: 600px; display: none" id="registration_dialog" title="New Regitration">
 
             <form id="registration" enctype="multipart/data"action="action/registrationaction.jsp" method="POST" class="form-horizontal well">
                 <fieldset>
@@ -260,10 +262,11 @@
 
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="input01">Gender</label>
+                        <div class="control-group gender_group">
+                            <label class="control-label MustSel" for="input01">Gender</label>
                             <div class="controls">
-                                <select name="gender" id="select01">
+                                <select class="MustSelectOpt" name="gender" id="gender">
+                                    <option>Select</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
@@ -274,7 +277,7 @@
                         <div class="control-group">
                             <label class="control-label" for="dateofbirth">Date of Birth</label>
                             <div class="controls">
-                                <select class="input-mini dob"  name="day" >
+                                <select class="input-mini dob" id="day" name="day" >
                                     <option>D</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -436,32 +439,37 @@
                                     <option value="1900">1900</option>
                                 </select>
 
-                                <span class="help-inline"></span>
+
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="maritalstatus">Marital Status</label>
+                            <label  class="control-label MustSel">Marital Status</label>
                             <div class="controls">
-                                <select name="maritalstatus" id="martialstatus">
+                                <select class="MustSelectOpt" name="maritalstatus" id="martialstatus">
+                                    <option>Select</option>
                                     <option>Married</option>
                                     <option>Single</option>
                                     <option>Divorced</option>
+                                    <option>Separated</option>
                                 </select>
 
                             </div>
                         </div>
 
+
+
+                    </div>
+                    <div style="float: left;" class="second">            
                         <div class="control-group">
-                            <label class="control-label" for="input01">Country</label>
+                            <label class="control-label MustSel"  for="input01">Country</label>
                             <div class="controls">
-                                <select name="country" id="country">
+                                <select class="MustSelectOpt" name="country" id="country">
+                                    <option >Select</option>
                                     <option>Ghana</option>
                                     <option>Togo</option>
                                     <option>Benin</option>
                                 </select>
-                                <p class="help-inline">
 
-                                </p>
                             </div>
                         </div>
                         <div class="control-group">
@@ -471,10 +479,6 @@
 
                             </div>
                         </div>
-
-                    </div>
-                    <div  style="float: left;" class="second">            
-
                         <div class="control-group">
                             <label class="control-label" for="address">Address</label>
                             <div class="controls">
@@ -482,7 +486,13 @@
 
                             </div>
                         </div>
+                        <div class="control-group">
+                            <label class="control-label" for="email">Email</label>
+                            <div class="controls">
+                                <input type="text" name="email" id="email"/>
 
+                            </div>
+                        </div>
                         <div class="control-group">
                             <label class="control-label" for="contact">Telephone No.</label>
                             <div class="controls">
@@ -490,34 +500,23 @@
 
                             </div>
                         </div>
+
                         <div class="control-group">
                             <label class="control-label" for="emergencyperson">Emergency Person.</label>
                             <div class="controls">
-                                <input type="text" name="emergencyperson" id="inputSuccess"/>
+                                <input type="text" name="emergencyperson" id="emergencyperson"/>
 
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="emergencycontact">Emergency Tel. No.</label>
                             <div class="controls">
-                                <input type="text" name="emergencycontact" id="inputSuccess"/>
+                                <input type="text" name="emergencycontact" id="emergencycontact"/>
 
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="email">Email</label>
-                            <div class="controls">
-                                <input type="text" name="email" id="inputSuccess"/>
 
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="employer">Employer</label>
-                            <div class="controls">
-                                <input type="text" name="employer" id="inputSuccess"/>
 
-                            </div>
-                        </div>
                         <!-- <div class="control-group">
                              <label class="control-label" for="inputSuccess">Upload Image</label>
                              <div class="controls">
@@ -527,10 +526,20 @@
                          </div>-->
 
 
+
+                    </div>
+                    <div style="float: left;" class=" third_third">
                         <div class="control-group">
-                            <label class="control-label" for="type">Sponsorship Method</label>
+                            <label class="control-label" for="employer">Employer</label>
                             <div class="controls">
-                                <select id="payment" name="type">
+                                <input type="text" name="employer" id="inputSuccess"/>
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label MustSel"  for="type">Sponsorship Method</label>
+                            <div class="controls">
+                                <select class="MustSelectOpt" id="payment" name="type">
                                     <option >Select</option>
                                     <option id="nhis" value="NHIS" onclick="showInsurance()">National Health Insurance</option>
                                     <option id="cash" value="CASH" onclick="hideIt()">Out of Pocket </option>
@@ -547,7 +556,7 @@
                                 <div class="controls">
 
 
-                                    <select name="coperate">
+                                    <select id="coperate" name="coperate">
                                         <option>Select</option>
                                         <%
 
@@ -566,19 +575,19 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" >Corporate ID</label>
+                                <label for="coperateid" class="control-label" >Corporate ID</label>
                                 <div class="controls">
-                                    <input type="text" id="inputSuccess" name="coperateid" for="inputSuccess" value=""/>
+                                    <input type="text" id="coperateid" name="coperateid" for="coperateid" value=""/>
 
                                 </div>
                             </div>
                         </div>
                         <div style="display:none;" id="privatediv">
                             <div class="control-group">
-                                <label class="control-label" for="selectError">Sponsors</label>
+                                <label class="control-label">Sponsors</label>
                                 <div class="controls">
-                                    <select name="sponsorid">
-                                        <option value="0">Select</option>
+                                    <select name="sponsorid" id="sponsor">
+                                        <option value="Select">Select</option>
                                         <%
 
                                             List Sponsors = mgr.listPrivateSponsors();
@@ -596,26 +605,26 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" >Membership ID</label>
+                                <label for="membershipid" class="control-label" >Membership ID</label>
                                 <div class="controls">
-                                    <input type="text" id="inputSuccess"name="membershipid" for="inputSuccess" value=""/>
+                                    <input type="text" id="membershipid"name="membershipid" for="membershipid" value=""/>
 
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" >Benefit Plan</label>
+                                <label for="benefitplan" class="control-label" >Benefit Plan</label>
                                 <div class="controls">
-                                    <input type="text" id="inputSuccess" name="benefitplan" for="inputSuccess" value=""/>
+                                    <input type="text" id="benefitplan" name="benefitplan" for="benefitplan" value=""/>
 
                                 </div>
                             </div>
                         </div>
                         <div style="display:none;" id="nhisdiv">
                             <div class="control-group">
-                                <label class="control-label" >Membership ID</label>
+                                <label for="nhismembershipid" class="control-label" >Membership ID</label>
                                 <div class="controls">
-                                    <input type="text" id="inputSuccess"name="nhismembershipid" for="inputSuccess" value=""/>
+                                    <input type="text" id="nhismembershipid"name="nhismembershipid" for="nhismembershipid" value=""/>
 
                                 </div>
                             </div>
@@ -634,10 +643,11 @@
                                     <% }%>
                                 </select></div>
                         </div>
+
                     </div>
                 </fieldset>
                 <div style="text-align: center;">
-                    <button type="submit" name ="action" value="patient" class="btn btn-danger btn-large">
+                    <button type="submit" name ="action" value="patient" class="btn btn-danger btn-large submit_button">
                         <i class="icon-ok icon-white"></i> Save changes
                     </button>
 
@@ -646,135 +656,137 @@
             </form>
         </div>
 
-    </div>
 
-    <div style="display: none;" id="dialog2" title="Patient Search">
 
-        <form class="form-horizontal" action="searchresults.jsp" method="post">
-            <fieldset>
-                <div class="control-group center">
-                    <h3> Search By </h3>
-                    <br />
+        <div style="display: none;" id="dialog2" title="Patient Search">
 
-                    <select name="searchid">
-                        <option value="patientid">Patient ID/Folder No.</option>
-                        <option value="fullname">Patient First or Last Names</option>
-                        <option value="memberdshipnumber">Policy No.</option>
-                        <option value="dob">Date of Birth(0000-00-00)</option>
-                    </select>
+            <form class="form-horizontal" action="searchresults.jsp" method="post">
+                <fieldset>
+                    <div class="control-group center">
+                        <h3> Search By </h3>
+                        <br />
 
-                </div>
+                        <select name="searchid">
+                            <option value="patientid">Patient ID/Folder No.</option>
+                            <option value="fullname">Patient First or Last Names</option>
+                            <option value="memberdshipnumber">Policy No.</option>
+                            <option value="dob">Date of Birth(0000-00-00)</option>
+                        </select>
 
-                <hr />
+                    </div>
 
-                <div class="clearfix"></div>
-                <div class="center">
+                    <hr />
 
-                    <input type="text" placeholder="Please enter search query" class="input-xlarge"  name="searchquery"/>
+                    <div class="clearfix"></div>
+                    <div class="center">
 
-                    <br />
-                    <br />
-                    <br />
+                        <input type="text" placeholder="Please enter search query" class="input-xlarge"  name="searchquery"/>
 
-                    <input class="btn btn-large" type="submit" value="search" name="action"/>
-                </div>
+                        <br />
+                        <br />
+                        <br />
 
-            </fieldset>
-        </form>
+                        <input class="btn btn-large submit_button" type="submit" value="search" name="action"/>
+                    </div>
 
-    </div>
-    <!--end static dialog-->
+                </fieldset>
+            </form>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
-    <script src="js/bootstrap-scrollspy.js"></script>
-    <script src="js/bootstrap-collapse.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap-popover.js"></script>
-    <script src="js/application.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
+        </div>
+        <!--end static dialog-->
 
-    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap-dropdown.js"></script>
+        <script src="js/bootstrap-scrollspy.js"></script>
+        <script src="js/bootstrap-collapse.js"></script>
+        <script src="js/bootstrap-tooltip.js"></script>
+        <script src="js/bootstrap-popover.js"></script>
+        <script src="js/application.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
 
-    <script type="text/javascript" src="third-party/jQuery-UI-Date-Range-Picker/js/date.js"></script>
-    <script type="text/javascript" src="third-party/jQuery-UI-Date-Range-Picker/js/daterangepicker.jQuery.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 
-    <script src="third-party/wijmo/jquery.mousewheel.min.js" type="text/javascript"></script>
-    <script src="third-party/wijmo/jquery.bgiframe-2.1.3-pre.js" type="text/javascript"></script>
-    <script src="third-party/wijmo/jquery.wijmo-open.1.5.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="third-party/jQuery-UI-Date-Range-Picker/js/date.js"></script>
+        <script type="text/javascript" src="third-party/jQuery-UI-Date-Range-Picker/js/daterangepicker.jQuery.js"></script>
 
-    <script src="third-party/jQuery-UI-FileInput/js/enhance.min.js" type="text/javascript"></script>
-    <script src="third-party/jQuery-UI-FileInput/js/fileinput.jquery.js" type="text/javascript"></script>
+        <script src="third-party/wijmo/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="third-party/wijmo/jquery.bgiframe-2.1.3-pre.js" type="text/javascript"></script>
+        <script src="third-party/wijmo/jquery.wijmo-open.1.5.0.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="js/tablecloth.js"></script>
-    <script type="text/javascript" src="js/demo.js"></script>
+        <script src="third-party/jQuery-UI-FileInput/js/enhance.min.js" type="text/javascript"></script>
+        <script src="third-party/jQuery-UI-FileInput/js/fileinput.jquery.js" type="text/javascript"></script>
 
-    <!--initiate accordion-->
-    <script type="text/javascript">
-        
-        $("#payment").change(function() {
-          
-            var payment =  $('#payment option:selected').attr('id');
+        <script type="text/javascript" src="js/tablecloth.js"></script>
+        <script type="text/javascript" src="js/demo.js"></script>
+
+        <!--initiate accordion-->
+        <script type="text/javascript">
             
-            if(payment=='nhis'){
-                $("#companydiv").slideUp();
-                $("#privatediv").slideUp();
-                $("#nhisdiv").slideDown();
+            
+            $(".submit_button").click(function(){
                 
-            }else if(payment=='cash'){
-                $("#companydiv").slideUp();
-                $("#privatediv").slideUp();
-                $("#nhisdiv").slideUp();
+                $(".MustSelectOpt").each(function(){
+                   
+                    var selectedid =  $(this).attr('id');
+                    var selectedvalue = $(this).attr('value')
+                    
+                    if(selectedvalue=="Select"){
+                        //alert("Select")
+                        $('#'+selectedid).closest('.control-group').addClass('error').removeClass('success')
+                    }
+                    else{
+                        // alert(selectedvalue)
+                        $('#'+selectedid).closest('.control-group').addClass('success').removeClass('error');
+                    }
+                   
+                });
                 
-            }else if(payment=='private'){
-                $("#companydiv").slideUp();
-                $("#privatediv").slideDown();
-                $("#nhisdiv").slideUp();
-            
-            }else if(payment=='corporate'){
-                $("#companydiv").slideDown();
-                $("#privatediv").slideUp();
-                $("#nhisdiv").slideUp();
-            }
-            else{
-                alert("Please Select Payment Method");
-            }
-        });
-               
-               
-               
-           
-        $(function() {
-            
-            var menu_ul = $('.menu > li > ul'), menu_a = $('.menu > li > a');
-            
-            
-
-            menu_ul.hide();
-
-            $(".menu").fadeIn();
-            $(".content1").fadeIn();
-            $(".navbar").fadeIn();
-            $(".footer").fadeIn();
-            $(".subnav").fadeIn();
-            $(".progress1").hide();
-
-            menu_a.click(function(e) {
-                e.preventDefault();
-                if(!$(this).hasClass('active')) {
-                    menu_a.removeClass('active');
-                    menu_ul.filter(':visible').slideUp('normal');
-                    $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                } else {
-                    $(this).removeClass('active');
-                    $(this).next().stop(true, true).slideUp('normal');
+               /* 
+                if ($("#payment").attr('value')=="Private"){
+                    alert("")
+                    if ($('#sponsor').attr('value')=="Select"){
+                        $('#sponsor').closest('.control-group').addClass('error').removeClass('success')
+                    }
+                     
                 }
+               */
+                
             });
             
             
+            /*  $("#payment").change(function(){
+                
+              var payment =   $(this).attr("value");
+                alert(payment)
+            })
+             */  
+            
+            
+            $(".MustSelectOpt").change(function(){
+                
+                var selectedvalue = $(this).attr('value')
+                var selectedid = $(this).attr('id');    
+                //alert(selectedvalue);
+                //alert(selectedid);
+                if($("#"+selectedid).attr("value")=="Select"){
+                    
+                    $('#'+selectedid).closest('.control-group').addClass('error').removeClass('success')
+                    // $('.MustSel').closest('.control-group').addClass('error').removeClass('success')
+                        
+                }else{
+                    $('#'+selectedid).closest('.control-group').addClass('success').removeClass('error');        
+                    //  $('.MustSel').closest('.control-group').addClass('success').removeClass('error');
+                }
+                        
+                  
+                    
+            })
+                
+            
+        
             $('#registration').validate({
                 rules: {
                     fname: {
@@ -793,18 +805,7 @@
                         required: true,
                         email: true
                     },
-                    gender: {
-                        required: true   
-                    },
-                    
-                    email: {
-                        required: false,
-                        email: true
-                    },
-                    type: {
-                        required: true
-                        
-                    },
+                   
                     contact: {
                         required: true
                         
@@ -830,61 +831,194 @@
                     .text('OK!').addClass('valid')
                     .closest('.control-group').addClass('success');
                 }
-            });Ï
-            
-            
-            $(".dob").rules("add", { 
-                required:true
             });
+        
+            $("#payment").change(function() {
+          
+                var payment =  $('#payment option:selected').attr('id');
+            
+                if(payment=='nhis'){
+                    //alert("nhis");
+                    $("#companydiv").slideUp();
+                    $("#privatediv").slideUp();
+                    $("#nhisdiv").slideDown();
+                    $('#nhismembershipid').rules('add', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#coperateid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#benefitplan').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#membershipid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                
+                
+                }else if(payment=='cash'){
+                    //alert("cash");
+                    $("#companydiv").slideUp();
+                    $("#privatediv").slideUp();
+                    $("#nhisdiv").slideUp();
+                    $('#nhismembershipid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#coperateid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#benefitplan').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#membershipid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                
+                }else if(payment=='private'){
+                    //alert("private");
+                    $("#companydiv").slideUp();
+                    $("#privatediv").slideDown();
+                    $("#nhisdiv").slideUp();
+                    /* $('#benefitplan').rules('add', {
+                       required : true,
+                        minlength: 2
+                    });
+                    
+                     */
+                    if ($('#sponsor').attr('value')=="Select"){
+                        $('#sponsor').closest('.control-group').addClass('error').removeClass('success')
+                    }
+                    
+                    $('#membershipid').rules('add', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#nhismembershipid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#coperateid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+               
+            
+                }else if(payment=='corporate'){
+                    //alert("corporate");
+                    $("#companydiv").slideDown();
+                    $("#privatediv").slideUp();
+                    $("#nhisdiv").slideUp();
+                    
+                    if ($('#coperate').attr('value')=="Select"){
+                        $('#coperate').closest('.control-group').addClass('error').removeClass('success')
+                    }
+                    
+                    $('#coperateid').rules('add', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#nhismembershipid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                
+                    $('#benefitplan').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                    $('#membershipid').rules('remove', {
+                        required : true,
+                        minlength: 2
+                    });
+                }
+                else{
+                    alert("Please Select Payment Method");
+                }
+            });
+               
+               
+               
+           
+            $(function() {
+            
+                var menu_ul = $('.menu > li > ul'), menu_a = $('.menu > li > a');
+            
+            
 
-            
-            
+                menu_ul.hide();
 
-        });
-            
-            
-            
-            
-            
-        function showMembershipbox(){
-                           var show = document.getElementById("privateid");
-                           var shows = document.getElementById("nhis");
-                          
-                           show.style.display="block";
-                           shows.style.display="none";
-                       
-                   }
+                $(".menu").fadeIn();
+                $(".content1").fadeIn();
+                $(".navbar").fadeIn();
+                $(".footer").fadeIn();
+                $(".subnav").fadeIn();
+                $(".progress1").hide();
+
+                menu_a.click(function(e) {
+                    e.preventDefault();
+                    if(!$(this).hasClass('active')) {
+                        menu_a.removeClass('active');
+                        menu_ul.filter(':visible').slideUp('normal');
+                        $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                    } else {
+                        $(this).removeClass('active');
+                        $(this).next().stop(true, true).slideUp('normal');
+                    }
+                });
         
-        function showCorporate(){
-                           var show = document.getElementById("privateid");
-                           var shows = document.getElementById("nhis");
-                          
-                           show.style.display="none";
-                           shows.style.display="none";
-                       
-                   }
-        
-                   function showInsurance(){
-                           var show = document.getElementById("nhis");
-                           var shows = document.getElementById("privateid");
-                          
-                           show.style.display="block";
-                           shows.style.display="none";
-                       
-                   }
-        
-                   function hideIt(){
-                           var show = document.getElementById("privateid");
-                            var shows = document.getElementById("nhis");
-                            //if(show.style.display == "block"){
-                           show.style.display="none";
-                       //}else{
+            });
+            
+            
+            
+            
+            
+            function showMembershipbox(){
+                               var show = document.getElementById("privateid");
+                               var shows = document.getElementById("nhis");
+                              
+                               show.style.display="block";
+                               shows.style.display="none";
                            
-                         //  } if(show.style.display == "none"){ 
-                            shows.style.display="none";
-                   }    
+                       }
+        
+            function showCorporate(){
+                               var show = document.getElementById("privateid");
+                               var shows = document.getElementById("nhis");
+                              
+                               show.style.display="none";
+                               shows.style.display="none";
+                           
+                       }
+        
+                       function showInsurance(){
+                               var show = document.getElementById("nhis");
+                               var shows = document.getElementById("privateid");
+                              
+                               show.style.display="block";
+                               shows.style.display="none";
+                           
+                       }
+        
+                       function hideIt(){
+                               var show = document.getElementById("privateid");
+                                var shows = document.getElementById("nhis");
+                                //if(show.style.display == "block"){
+                               show.style.display="none";
+                           //}else{
+                               
+                             //  } if(show.style.display == "none"){ 
+                                shows.style.display="none";
+                       }    
       
-    </script>
+        </script>
 
-</body>
+    </body>
 </html>

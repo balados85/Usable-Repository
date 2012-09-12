@@ -28,6 +28,7 @@ $(function() {
     
 
     $('.registration_dialog_link').click(function() {
+        
         $('#registration_dialog').dialog('open');
         return false;
     });
